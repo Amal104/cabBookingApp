@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'Size.dart';
+
+import '../values/values.dart';
 
 class CustomTextField {
   final TextEditingController controller = TextEditingController();

@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:intl_phone_field/country_picker_dialog.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Widgets/Otp_Field.dart';
-
 import '../Constants/Buttons.dart';
-import '../Constants/Colors.dart';
-import '../Constants/Size.dart';
-import '../Constants/Strings.dart';
+import '../values/values.dart';
+
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});

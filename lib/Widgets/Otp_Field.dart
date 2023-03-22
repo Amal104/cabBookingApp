@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:taskiuser/Componants/Colors.dart';
-import 'package:taskiuser/Componants/Size.dart';
+import '../values/values.dart';
 
 Widget textFieldOTP(
     {required bool first, required last, required BuildContext context}) {
   return SizedBox(
-    height: height(context)*0.1,
+    height: height(context) * 0.1,
     child: AspectRatio(
       aspectRatio: 0.85,
       child: TextField(
@@ -21,22 +20,23 @@ Widget textFieldOTP(
         showCursor: false,
         readOnly: false,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
-          color: kWhite,
+          color: AppColor.white,
         ),
         keyboardType: TextInputType.number,
         maxLength: 1,
         decoration: InputDecoration(
           filled: true,
-          fillColor: kSecondaryShade,
+          fillColor: AppColor.secondaryShade,
           counter: const Offstage(),
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 0, color: kSecondaryShade),
+              borderSide:
+                  const BorderSide(width: 0, color: AppColor.secondaryShade),
               borderRadius: BorderRadius.circular(12)),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 2, color: kPrimary),
+              borderSide: const BorderSide(width: 2, color: AppColor.primary),
               borderRadius: BorderRadius.circular(12)),
         ),
       ),

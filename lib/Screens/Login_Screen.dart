@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:taskiuser/Constants/Colors.dart';
-import 'package:taskiuser/Constants/Strings.dart';
-import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Screens/Otp_Screen.dart';
 import '../Constants/Buttons.dart';
-import '../Constants/Size.dart';
-import '../Constants/TextField.dart';
+import '../values/values.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -53,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                 padding:
                     EdgeInsets.symmetric(horizontal: width(context) * 0.03),
                 decoration: BoxDecoration(
-                  color: kSecondaryShade,
+                  color: AppColor.secondaryShade,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: IntlPhoneField(
@@ -68,34 +63,34 @@ class LoginScreen extends StatelessWidget {
                   ),
                   autovalidateMode: AutovalidateMode.disabled,
                   disableLengthCheck: true,
-                  dropdownTextStyle: TextStyle(
+                  dropdownTextStyle: const TextStyle(
                     fontSize: 18,
-                    color: kWhite,
+                    color: AppColor.white,
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
-                    color: kWhite,
+                    color: AppColor.white,
                   ),
                   dropdownIconPosition: IconPosition.trailing,
                   dropdownIcon: const Icon(Icons.arrow_drop_down_outlined),
                   pickerDialogStyle: PickerDialogStyle(
                     backgroundColor: const Color(0xFF141414),
-                    countryCodeStyle: TextStyle(
-                      color: kPrimary,
+                    countryCodeStyle: const TextStyle(
+                      color: AppColor.primary,
                     ),
-                    countryNameStyle: TextStyle(
-                      color: kWhite,
+                    countryNameStyle: const TextStyle(
+                      color: AppColor.white,
                     ),
-                    searchFieldInputDecoration: InputDecoration(
-                      border: const OutlineInputBorder(
+                    searchFieldInputDecoration: const InputDecoration(
+                      border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                       ),
                       hintText: "Search here..",
                       hintStyle: TextStyle(
-                        color: kWhite,
+                        color: AppColor.white,
                       ),
-                      prefixIcon: const Icon(Icons.search),
-                      prefixIconColor: kPrimary,
+                      prefixIcon: Icon(Icons.search),
+                      prefixIconColor: AppColor.primary,
                     ),
                   ),
                 ),

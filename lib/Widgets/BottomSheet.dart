@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../Componants/TextStyle.dart';
-import '../Constants/Colors.dart';
+
+import '../values/values.dart';
 
 showbottomsheet(BuildContext context) {
   WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -24,7 +24,8 @@ showbottomsheet(BuildContext context) {
               height: 10.0,
               width: 50.0,
               decoration: BoxDecoration(
-                  color: kWhite, borderRadius: BorderRadius.circular(50.0)),
+                  color: AppColor.white,
+                  borderRadius: BorderRadius.circular(50.0)),
             ),
           ),
           DraggableScrollableSheet(
@@ -64,7 +65,7 @@ showbottomsheet(BuildContext context) {
                       style: ksecTextStyle,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Padding(

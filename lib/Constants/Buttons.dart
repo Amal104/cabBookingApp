@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Size.dart';
+import '../values/values.dart';
 
 customButton(BuildContext context, String text, void Function()? function) =>
     GestureDetector(
