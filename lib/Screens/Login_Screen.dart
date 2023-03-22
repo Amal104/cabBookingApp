@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:taskiuser/Screens/Otp_Screen.dart';
-import '../Constants/Buttons.dart';
+import '../Components/Buttons.dart';
 import '../values/values.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -100,7 +100,10 @@ class LoginScreen extends StatelessWidget {
               ),
               customButton(context, "Get OTP", () {
                 print(countryCode + controller.text);
-                Get.to(() => const OtpScreen());
+                Get.to(
+                  () => const OtpScreen(),
+                  transition: Transition.rightToLeft,
+                );
               }),
             ],
           ),

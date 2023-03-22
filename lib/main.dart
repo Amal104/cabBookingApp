@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.amber,
         scaffoldBackgroundColor:  const Color(0xFF141414),
       ),
-      home: const HomePage(),
+      home: const LoginScreen(),
     );
   }
 }

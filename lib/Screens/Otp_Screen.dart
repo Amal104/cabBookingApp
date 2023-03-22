@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Widgets/Otp_Field.dart';
-import '../Constants/Buttons.dart';
+import '../Components/Buttons.dart';
 import '../values/values.dart';
-
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -75,7 +74,10 @@ class OtpScreen extends StatelessWidget {
                 height: height(context) * 0.03,
               ),
               customButton(context, "Login", () {
-                Get.to(()=> const HomePage());
+                Get.to(
+                  () => const HomePage(),
+                  transition: Transition.rightToLeft,
+                );
               }),
             ],
           ),
