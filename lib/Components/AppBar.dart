@@ -26,6 +26,8 @@ class CustomAppbar extends StatelessWidget {
       actions: actions,
       elevation: elevation,
       automaticallyImplyLeading: false,
+      leadingWidth: width(context)*0.16,
+      
     );
   }
 }
