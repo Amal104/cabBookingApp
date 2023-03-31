@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskiuser/Components/AppBar.dart';
+import 'package:taskiuser/Screens/Home_Drawer.dart';
 import 'package:taskiuser/Widgets/BottomSheet.dart';
 
 import '../values/values.dart';
@@ -98,72 +100,8 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [],
       ),
-      drawer: Drawer(
-        backgroundColor: AppColor.secondary,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: height(context) * 0.08,
-              ),
-              Container(
-                height: height(context) * 0.2,
-                decoration: const BoxDecoration(
-                  color: AppColor.secondaryShade,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      height: height(context) * 0.08,
-                      width: width(context) * 0.15,
-                      decoration: BoxDecoration(
-                          color: AppColor.primary,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.solidUser,
-                          color: AppColor.secondaryShadev2,
-                          size: height(context) * 0.04,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: width(context) * 0.3,
-                          child: Text(
-                            "Dev Akash",
-                            style: GoogleFonts.inter(
-                              fontSize: 20,
-                              color: AppColor.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          "9996665550",
-                          style: GoogleFonts.inter(
-                            fontSize: 14,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const FaIcon(
-                      FontAwesomeIcons.chevronRight,
-                      color: AppColor.primary,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+      drawer: const HomeScreenDrawer(),
     );
   }
 }
+
