@@ -35,24 +35,24 @@ class _HomePageState extends State<HomePage> {
         child: CustomAppbar(
           title: Image.asset(
             taSkiBlackLogo,
-            height: height(context) * 0.065,
+            height: height(context) * 0.07,
           ),
           leading: Builder(
             builder: (BuildContext context) {
               return Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: width(context) * 0.025,
-                  vertical: height(context) * 0.013,
                 ),
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
                       color: AppColor.secondary,
-                      borderRadius: BorderRadius.circular(15)),
+                      ),
                   child: Center(
                     child: IconButton(
                       icon: const Icon(
                         Icons.menu,
-                        size: 20,
+                        size: 25,
                         color: AppColor.primary,
                       ),
                       onPressed: () {

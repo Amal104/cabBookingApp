@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskiuser/Screens/My_History_Screen.dart';
+import 'package:taskiuser/Screens/Payments_Screen.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../values/values.dart';
 
@@ -74,6 +76,9 @@ class HomeScreenDrawer extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(
+            height: height(context) * 0.02,
+          ),
           Expanded(
             flex: 11,
             child: MediaQuery.removePadding(
@@ -100,7 +105,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           'My History',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
@@ -108,20 +113,19 @@ class HomeScreenDrawer extends StatelessWidget {
                       ListTile(
                         onTap: () {
                           Get.to(
-                            () => const MyHistory(),
+                            () => const PaymentsScreen(),
                             transition: Transition.rightToLeft,
                           );
                         },
-                        leading: const FaIcon(
-                          FontAwesomeIcons.paypal,
-                          color: AppColor.primary,
-                          size: 25,
+                        leading: Image.asset(
+                          "assets/icons/rupee.png",
+                          height: height(context) * 0.026,
                         ),
                         title: Text(
                           'Payments',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
@@ -134,7 +138,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           );
                         },
                         leading: const Icon(
-                          Icons.location_on_outlined,
+                          Icons.notifications,
                           color: AppColor.primary,
                           size: 25,
                         ),
@@ -142,7 +146,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           'Notification',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
@@ -155,7 +159,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           );
                         },
                         leading: const Icon(
-                          Icons.alarm,
+                          Icons.contact_support,
                           color: AppColor.primary,
                           size: 25,
                         ),
@@ -163,7 +167,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           'FAQ',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
@@ -176,7 +180,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           );
                         },
                         leading: const Icon(
-                          Icons.groups_outlined,
+                          Icons.favorite,
                           color: AppColor.primary,
                           size: 25,
                         ),
@@ -184,7 +188,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           'Favourites',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
@@ -197,7 +201,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           );
                         },
                         leading: const Icon(
-                          Icons.cloud_download_outlined,
+                          Icons.local_taxi,
                           color: AppColor.primary,
                           size: 25,
                         ),
@@ -205,7 +209,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           'Book a trip',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
@@ -218,7 +222,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           );
                         },
                         leading: const Icon(
-                          Icons.password_outlined,
+                          Icons.question_answer,
                           color: AppColor.primary,
                           size: 25,
                         ),
@@ -226,20 +230,23 @@ class HomeScreenDrawer extends StatelessWidget {
                           'Chat Support',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
                       ),
                       ListTile(
-                        onTap: () {
-                          Get.to(
-                            () => const MyHistory(),
-                            transition: Transition.rightToLeft,
-                          );
+                        onTap: () async {
+                          String googleURL = "https://taski.in/#about";
+                          await canLaunchUrlString(googleURL)
+                              ? await launchUrlString(
+                                  googleURL,
+                                  mode: LaunchMode.inAppWebView,
+                                )
+                              : throw "Could not launch";
                         },
                         leading: const Icon(
-                          Icons.logout_outlined,
+                          Icons.info,
                           color: AppColor.primary,
                           size: 25,
                         ),
@@ -247,20 +254,23 @@ class HomeScreenDrawer extends StatelessWidget {
                           'About Us',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
                       ),
                       ListTile(
-                        onTap: () {
-                          Get.to(
-                            () => const MyHistory(),
-                            transition: Transition.rightToLeft,
-                          );
+                        onTap: () async {
+                          String googleURL = "https://taski.in/terms";
+                          await canLaunchUrlString(googleURL)
+                              ? await launchUrlString(
+                                  googleURL,
+                                  mode: LaunchMode.inAppWebView,
+                                )
+                              : throw "Could not launch";
                         },
                         leading: const Icon(
-                          Icons.logout_outlined,
+                          Icons.pages,
                           color: AppColor.primary,
                           size: 25,
                         ),
@@ -268,20 +278,23 @@ class HomeScreenDrawer extends StatelessWidget {
                           'Terms & Conditions',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
                       ),
                       ListTile(
-                        onTap: () {
-                          Get.to(
-                            () => const MyHistory(),
-                            transition: Transition.rightToLeft,
-                          );
+                        onTap: () async {
+                          String googleURL = "https://taski.in/privacy";
+                          await canLaunchUrlString(googleURL)
+                              ? await launchUrlString(
+                                  googleURL,
+                                  mode: LaunchMode.inAppWebView,
+                                )
+                              : throw "Could not launch";
                         },
                         leading: const Icon(
-                          Icons.logout_outlined,
+                          Icons.privacy_tip,
                           color: AppColor.primary,
                           size: 25,
                         ),
@@ -289,20 +302,22 @@ class HomeScreenDrawer extends StatelessWidget {
                           'Privacy Policy',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
                       ),
                       ListTile(
-                        onTap: () {
-                          Get.to(
-                            () => const MyHistory(),
-                            transition: Transition.rightToLeft,
-                          );
+                        onTap: () async {
+                          String googleURL = "https://taski.in/#contacts";
+                          await canLaunchUrlString(googleURL)
+                              ? await launchUrlString(
+                                  googleURL,
+                                )
+                              : throw "Could not launch";
                         },
                         leading: const Icon(
-                          Icons.logout_outlined,
+                          Icons.contact_emergency,
                           color: AppColor.primary,
                           size: 25,
                         ),
@@ -310,48 +325,46 @@ class HomeScreenDrawer extends StatelessWidget {
                           'Contact Us',
                           style: GoogleFonts.inter(
                             color: AppColor.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
                           ),
                         ),
                       ),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: width(context) * 0.05,
+                        ),
+                        width: width(context),
+                        height: height(context) * 0.07,
+                        color: AppColor.secondaryShade,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Proudly Indian",
+                              style: GoogleFonts.sacramento(
+                                color: AppColor.primary,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Text(
+                              "1.1.22.2",
+                              style: GoogleFonts.inter(
+                                color: AppColor.primary,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ],
               ),
             ),
           ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: width(context) * 0.05,
-              ),
-              width: width(context),
-              // height: height(context) * 0.07,
-              color: AppColor.black,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Proudly Indian",
-                    style: GoogleFonts.sacramento(
-                      color: AppColor.primary,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text(
-                    "1.1.22.2",
-                    style: GoogleFonts.inter(
-                      color: AppColor.primary,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );
