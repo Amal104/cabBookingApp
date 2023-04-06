@@ -11,8 +11,8 @@ import '../Tabs/PastTab.dart';
 import '../Tabs/UpcomingTab.dart';
 import '../values/values.dart';
 
-class MyHistory extends StatelessWidget {
-  const MyHistory({super.key});
+class NotificationScreen extends StatelessWidget {
+  const NotificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +23,11 @@ class MyHistory extends StatelessWidget {
           preferredSize: Size.fromHeight(height(context) * 0.132),
           child: CustomAppbarPage(
             title: null,
-            leading: const PageTitle(title: "My Trips",padding: 0),
+            leading: const PageTitle(title: "Notifications",padding: 40,),
             actions: null,
             color: AppColor.transparent,
             elevation: 0,
-            leadingWidth: width(context) * 0.38,
+            leadingWidth: width(context) * 0.46,
             bottom: TabBar(
               padding: EdgeInsets.symmetric(
                 horizontal: width(context) * 0.05,

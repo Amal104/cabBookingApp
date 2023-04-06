@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskiuser/Screens/My_History_Screen.dart';
+import 'package:taskiuser/Screens/Notification_Screen.dart';
 import 'package:taskiuser/Screens/Payments_Screen.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -133,7 +134,7 @@ class HomeScreenDrawer extends StatelessWidget {
                       ListTile(
                         onTap: () {
                           Get.to(
-                            () => const MyHistory(),
+                            () => const NotificationScreen(),
                             transition: Transition.rightToLeft,
                           );
                         },
