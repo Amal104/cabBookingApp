@@ -76,64 +76,70 @@ class CityTripScreen extends StatelessWidget {
                 width: width(context),
                 child: Column(
                   children: [
-                    TextField(
-                      style: GoogleFonts.inter(
-                          color: AppColor.white, fontWeight: FontWeight.w500),
-                      decoration: InputDecoration(
-                        labelText: "From",
-                        labelStyle: GoogleFonts.inter(
-                          color: AppColor.white,
-                          letterSpacing: 0.5,
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        floatingLabelStyle:
-                            GoogleFonts.inter(color: AppColor.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                              color: AppColor.secondaryShade, width: 2),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                            color: AppColor.secondaryShade,
-                            width: 2,
+                    SizedBox(
+                      height: height(context) * 0.065,
+                      child: TextField(
+                        style: GoogleFonts.inter(
+                            color: AppColor.white, fontWeight: FontWeight.w500),
+                        decoration: InputDecoration(
+                          labelText: "From",
+                          labelStyle: GoogleFonts.inter(
+                            color: AppColor.white,
+                            letterSpacing: 0.5,
                           ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          floatingLabelStyle:
+                              GoogleFonts.inter(color: AppColor.white),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                color: AppColor.secondaryShade, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                              color: AppColor.secondaryShade,
+                              width: 2,
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(
                       height: height(context) * 0.015,
                     ),
-                    TextField(
-                      style: GoogleFonts.inter(
-                          color: AppColor.white, fontWeight: FontWeight.w500),
-                      decoration: InputDecoration(
-                        labelText: "To",
-                        labelStyle: GoogleFonts.inter(
-                          color: AppColor.white,
-                          letterSpacing: 0.5,
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        floatingLabelStyle:
-                            GoogleFonts.inter(color: AppColor.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                              color: AppColor.secondaryShade, width: 2),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                            color: AppColor.secondaryShade,
-                            width: 2,
+                    SizedBox(
+                      height: height(context) * 0.065,
+                      child: TextField(
+                        style: GoogleFonts.inter(
+                            color: AppColor.white, fontWeight: FontWeight.w500),
+                        decoration: InputDecoration(
+                          labelText: "To",
+                          labelStyle: GoogleFonts.inter(
+                            color: AppColor.white,
+                            letterSpacing: 0.5,
                           ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          floatingLabelStyle:
+                              GoogleFonts.inter(color: AppColor.white),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                color: AppColor.secondaryShade, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                              color: AppColor.secondaryShade,
+                              width: 2,
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
                       ),
                     ),
@@ -144,7 +150,9 @@ class CityTripScreen extends StatelessWidget {
           ),
           Row(
             children: [
-              Container(),
+              Container(
+                height: height(context) * 0.06,
+              ),
               Container(),
             ],
           )
