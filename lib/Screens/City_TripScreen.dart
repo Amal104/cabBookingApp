@@ -61,13 +61,16 @@ class CityTripScreen extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Container(
-                height: height(context) * 0.04,
-                width: width(context) * 0.08,
+                padding: EdgeInsets.all(6),
+                height: height(context) * 0.045,
+                width: width(context) * 0.085,
                 decoration: BoxDecoration(
                     color: AppColor.primary,
                     borderRadius: BorderRadius.circular(5)),
-                child: SvgPicture.asset("assets/icons/arrows.svg",
-                    fit: BoxFit.none),
+                child: SvgPicture.asset(
+                  "assets/icons/arrows.svg",
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(
                 width: width(context),
@@ -139,6 +142,12 @@ class CityTripScreen extends StatelessWidget {
               ),
             ],
           ),
+          Row(
+            children: [
+              Container(),
+              Container(),
+            ],
+          )
         ],
       ),
     );

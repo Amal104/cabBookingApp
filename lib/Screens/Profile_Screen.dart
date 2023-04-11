@@ -81,16 +81,13 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(
               height: height(context) * 0.015,
             ),
-            Hero(
-              tag: "Name",
-              child: Text(
-                "Dev Akash",
-                style: GoogleFonts.inter(
-                  color: AppColor.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  letterSpacing: 0.5,
-                ),
+            Text(
+              "Dev Akash",
+              style: GoogleFonts.inter(
+                color: AppColor.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                letterSpacing: 0.5,
               ),
             ),
             SizedBox(

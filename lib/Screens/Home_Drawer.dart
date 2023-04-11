@@ -62,15 +62,12 @@ class HomeScreenDrawer extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: width(context) * 0.3,
-                        child: Hero(
-                          tag: "Name",
-                          child: Text(
-                            "Dev Akash",
-                            style: GoogleFonts.inter(
-                              fontSize: 20,
-                              color: AppColor.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        child: Text(
+                          "Dev Akash",
+                          style: GoogleFonts.inter(
+                            fontSize: 20,
+                            color: AppColor.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
