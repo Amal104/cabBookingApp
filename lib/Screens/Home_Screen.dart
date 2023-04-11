@@ -6,6 +6,7 @@ import 'package:taskiuser/Components/AppBar.dart';
 import 'package:taskiuser/Screens/Home_Drawer.dart';
 import 'package:taskiuser/Widgets/BottomSheet.dart';
 
+import '../Widgets/HomeBottomSheet.dart';
 import '../values/values.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,84 +25,61 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.white,
-      extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: Size(
-          width(context),
-          height(context) * 0.1,
-        ),
-        child: CustomAppbar(
-          title: Image.asset(
-            taSkiBlackLogo,
-            height: height(context) * 0.07,
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        backgroundColor: AppColor.white,
+        extendBodyBehindAppBar: true,
+        appBar: PreferredSize(
+          preferredSize: Size(
+            width(context),
+            height(context) * 0.1,
           ),
-          leading: Builder(
-            builder: (BuildContext context) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: width(context) * 0.025,
-                ),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
+          child: CustomAppbar(
+            title: Image.asset(
+              taSkiBlackLogo,
+              height: height(context) * 0.07,
+            ),
+            leading: Builder(
+              builder: (BuildContext context) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: width(context) * 0.025,
+                  ),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
                       color: AppColor.secondary,
+                    ),
+                    child: Center(
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.menu,
+                          size: 25,
+                          color: AppColor.primary,
+                        ),
+                        onPressed: () {
+                          Scaffold.of(context).openDrawer();
+                        },
+                        tooltip: MaterialLocalizations.of(context)
+                            .openAppDrawerTooltip,
                       ),
-                  child: Center(
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.menu,
-                        size: 25,
-                        color: AppColor.primary,
-                      ),
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                      tooltip: MaterialLocalizations.of(context)
-                          .openAppDrawerTooltip,
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
+            actions: null,
+            color: AppColor.transparent,
+            elevation: 0,
           ),
-          actions: null,
-          color: AppColor.transparent,
-          elevation: 0,
         ),
-      ),
-      bottomSheet: SizedBox(
-        height: height(context) * 0.4,
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                // height: height(context) * 0.4,
-                width: width(context),
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadiusDirectional.only(
-                      topStart: Radius.circular(20),
-                      topEnd: Radius.circular(20),
-                    ),
-                    color: AppColor.secondaryShadev2),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                // height: height(context) * 0.4,
-                width: width(context),
-                decoration: const BoxDecoration(color: AppColor.secondary),
-              ),
-            ),
-          ],
+        bottomSheet: const HomeBottomSheet(),
+        body: Column(
+          children: [],
         ),
+        drawer: const HomeScreenDrawer(),
       ),
-      body: Column(
-        children: [],
-      ),
-      drawer: const HomeScreenDrawer(),
     );
   }
 }
-

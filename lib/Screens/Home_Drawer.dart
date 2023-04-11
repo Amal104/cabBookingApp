@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:taskiuser/Screens/My_History_Screen.dart';
 import 'package:taskiuser/Screens/Notification_Screen.dart';
 import 'package:taskiuser/Screens/Payments_Screen.dart';
+import 'package:taskiuser/Screens/Profile_Screen.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../values/values.dart';
@@ -23,58 +24,72 @@ class HomeScreenDrawer extends StatelessWidget {
           SizedBox(
             height: height(context) * 0.06,
           ),
-          Container(
-            height: height(context) * 0.2,
-            decoration: const BoxDecoration(
-              color: AppColor.secondaryShade,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: height(context) * 0.07,
-                  width: width(context) * 0.15,
-                  decoration: BoxDecoration(
-                      color: AppColor.primary,
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Center(
-                    child: FaIcon(
-                      FontAwesomeIcons.solidUser,
-                      color: AppColor.secondaryShadev2,
-                      size: height(context) * 0.042,
-                    ),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: width(context) * 0.3,
-                      child: Text(
-                        "Dev Akash",
-                        style: GoogleFonts.inter(
-                          fontSize: 20,
-                          color: AppColor.white,
-                          fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => const ProfileScreen(),
+                transition: Transition.rightToLeft,
+              );
+            },
+            child: Container(
+              height: height(context) * 0.2,
+              decoration: const BoxDecoration(
+                color: AppColor.secondaryShade,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Hero(
+                    tag: "Profile",
+                    child: Container(
+                      height: height(context) * 0.07,
+                      width: width(context) * 0.15,
+                      decoration: BoxDecoration(
+                          color: AppColor.primary,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Center(
+                        child: FaIcon(
+                          FontAwesomeIcons.solidUser,
+                          color: AppColor.secondaryShadev2,
+                          size: height(context) * 0.042,
                         ),
                       ),
                     ),
-                    Text(
-                      "9996665550",
-                      style: GoogleFonts.inter(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: width(context) * 0.3,
+                        child: Hero(
+                          tag: "Name",
+                          child: Text(
+                            "Dev Akash",
+                            style: GoogleFonts.inter(
+                              fontSize: 20,
+                              color: AppColor.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const FaIcon(
-                  FontAwesomeIcons.chevronRight,
-                  color: AppColor.primary,
-                ),
-              ],
+                      Text(
+                        "9996665550",
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const FaIcon(
+                    FontAwesomeIcons.chevronRight,
+                    color: AppColor.primary,
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(

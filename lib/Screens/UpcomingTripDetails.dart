@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Components/AppBar.dart';
@@ -77,17 +78,34 @@ class UpcomingTripDetails extends StatelessWidget {
                       height: height(context) * 0.015,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Radio(
-                          visualDensity: const VisualDensity(
-                              horizontal: VisualDensity.minimumDensity,
-                              vertical: VisualDensity.minimumDensity),
-                          value: 0,
-                          groupValue: 0,
-                          onChanged: (value) {},
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Container(
+                              height: height(context) * 0.02,
+                              width: width(context) * 0.04,
+                              decoration: const BoxDecoration(
+                                  color: AppColor.white,
+                                  shape: BoxShape.circle),
+                            ),
+                            Container(
+                              height: height(context) * 0.013,
+                              width: width(context) * 0.03,
+                              decoration: const BoxDecoration(
+                                color: AppColor.primary,
+                                shape: BoxShape.circle,
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          width: width(context) * 0.025,
                         ),
                         Text(
                           "Edapplly, Kerala, India",
+                          maxLines: 1,
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontSize: 15,
@@ -95,18 +113,37 @@ class UpcomingTripDetails extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: height(context) * 0.008,
+                    ),
                     Row(
                       children: [
-                        Radio(
-                          visualDensity: const VisualDensity(
-                              horizontal: VisualDensity.minimumDensity,
-                              vertical: VisualDensity.minimumDensity),
-                          value: 1,
-                          groupValue: 0,
-                          onChanged: (value) {},
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Container(
+                              height: height(context) * 0.02,
+                              width: width(context) * 0.04,
+                              decoration: const BoxDecoration(
+                                  color: AppColor.white,
+                                  shape: BoxShape.circle),
+                            ),
+                            Container(
+                              height: height(context) * 0.013,
+                              width: width(context) * 0.03,
+                              decoration: const BoxDecoration(
+                                color: AppColor.secondary,
+                                shape: BoxShape.circle,
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          width: width(context) * 0.025,
                         ),
                         Text(
                           "Kakkanad, Kakkanad, Kerala, India",
+                          maxLines: 1,
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontSize: 15,
@@ -116,7 +153,162 @@ class UpcomingTripDetails extends StatelessWidget {
                     ),
                     Divider(
                       color: AppColor.grey,
+                      height: height(context) * 0.05,
                       thickness: 0.5,
+                    ),
+                    SizedBox(
+                      height: height(context) * 0.015,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Trip ID",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "1563245879632564",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height(context) * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Email",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "amal@taski.in",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height(context) * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Branch",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "Test Taski",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height(context) * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Trip Type",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "Hire",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height(context) * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Purpose",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "Genaral",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height(context) * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Distance",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "100 KM",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height(context) * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Time",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "100 Min",
+                          style: GoogleFonts.inter(
+                            color: AppColor.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 ),
@@ -124,8 +316,51 @@ class UpcomingTripDetails extends StatelessWidget {
             ),
           ),
           Container(
+            padding: EdgeInsets.symmetric(horizontal: width(context) * 0.04),
             height: height(context) * 0.08,
             color: AppColor.primary,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "TOTAL",
+                      style: GoogleFonts.inter(
+                        color: AppColor.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      "Corporate Credit",
+                      style: GoogleFonts.inter(
+                        color: AppColor.black,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  height: height(context) * 0.08,
+                  width: width(context) * 0.115,
+                  decoration: const BoxDecoration(
+                    color: AppColor.black,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Center(
+                    child: FaIcon(
+                      FontAwesomeIcons.xmark,
+                      size: 15,
+                      color: AppColor.primary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
