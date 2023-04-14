@@ -15,14 +15,14 @@ class HomeBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height(context) * 0.52,
+      height: height(context) * 0.55,
       child: Column(
         children: [
           Container(
             height: height(context) * 0.06,
             width: width(context),
             decoration: const BoxDecoration(
-              color: AppColor.secondary,
+              color: AppColor.secondaryShadev2,
               borderRadius: BorderRadiusDirectional.only(
                 topStart: Radius.circular(20),
                 topEnd: Radius.circular(20),
