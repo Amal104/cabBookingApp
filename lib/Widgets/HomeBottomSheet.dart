@@ -90,17 +90,14 @@ class HomeBottomSheet extends StatelessWidget {
                   ),
                 ]),
           ),
-          Expanded(
-            child: SizedBox(
-              width: width(context),
-              child: const TabBarView(
-                children: [
-                CityTripScreen(),
-                AirportTripScreen(),
-                OutstationTripScreen(),
-                RentalTripScreen(),
-              ]),
-            ),
+          const Expanded(
+            child: TabBarView(
+              children: [
+              CityTripScreen(),
+              AirportTripScreen(),
+              OutstationTripScreen(),
+              RentalTripScreen(),
+            ]),
           ),
         ],
       ),

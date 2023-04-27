@@ -89,15 +89,13 @@ class HomeScreenDrawer extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: height(context) * 0.02,
-          ),
           Expanded(
             flex: 11,
             child: MediaQuery.removePadding(
               context: context,
               removeTop: true,
               child: ListView(
+                padding: const EdgeInsets.only(top: 10),
                 children: [
                   Wrap(
                     runSpacing: height(context) * 0.006,
