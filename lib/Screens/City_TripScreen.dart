@@ -32,13 +32,13 @@ class CityTripScreen extends StatelessWidget {
                     2,
                     (index) => GestureDetector(
                       onTap: () {
-                        provider.selectedTrip(index);
+                        provider.selectedCityTrip(index);
                       },
                       child: Container(
                         height: height(context) * 0.04,
                         width: width(context) * 0.3,
                         decoration: BoxDecoration(
-                            color: provider.selectedTripIndex == index
+                            color: provider.selectedCityTripIndex == index
                                 ? AppColor.primary
                                 : AppColor.secondaryShadev2,
                             borderRadius: BorderRadius.circular(10)),
@@ -47,7 +47,7 @@ class CityTripScreen extends StatelessWidget {
                           "ONE WAY",
                           style: GoogleFonts.inter(
                             fontWeight: FontWeight.w600,
-                            color: provider.selectedTripIndex == index
+                            color: provider.selectedCityTripIndex == index
                                 ? AppColor.black
                                 : AppColor.white,
                           ),
@@ -172,7 +172,7 @@ class CityTripScreen extends StatelessWidget {
                   SizedBox(
                     width: width(context) * 0.035,
                   ),
-                  if (provider.selectedTripIndex != 1)
+                  if (provider.selectedCityTripIndex != 1)
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.symmetric(
@@ -207,7 +207,7 @@ class CityTripScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (provider.selectedTripIndex == 1)
+                  if (provider.selectedCityTripIndex == 1)
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.symmetric(
@@ -223,11 +223,11 @@ class CityTripScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              if (provider.selectedTripIndex == 1)
+              if (provider.selectedCityTripIndex == 1)
                 SizedBox(
                   height: height(context) * 0.015,
                 ),
-              if (provider.selectedTripIndex == 1)
+              if (provider.selectedCityTripIndex == 1)
                 Container(
                   padding: EdgeInsets.symmetric(
                         vertical: height(context) * 0.0125,
@@ -272,7 +272,7 @@ class CityTripScreen extends StatelessWidget {
                   4,
                   (index) => GestureDetector(
                     onTap: () {
-                      provider.selectedCab(index);
+                      provider.selectedCityCab(index);
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(
@@ -280,7 +280,7 @@ class CityTripScreen extends StatelessWidget {
                       height: height(context) * 0.11,
                       width: width(context) * 0.21,
                       decoration: BoxDecoration(
-                        color: provider.selectedCabIndex == index
+                        color: provider.selectedCityCabIndex == index
                             ? AppColor.primary
                             : AppColor.secondaryShadev2,
                         borderRadius: BorderRadius.circular(10),
@@ -301,7 +301,7 @@ class CityTripScreen extends StatelessWidget {
                               style: GoogleFonts.inter(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 13,
-                                color: provider.selectedCabIndex == index
+                                color: provider.selectedCityCabIndex == index
                                     ? AppColor.black
                                     : AppColor.white,
                               ),

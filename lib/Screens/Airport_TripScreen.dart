@@ -31,13 +31,13 @@ class AirportTripScreen extends StatelessWidget {
                   2,
                   (index) => GestureDetector(
                     onTap: () {
-                      provider.selectedTrip(index);
+                      provider.selectedAirTrip(index);
                     },
                     child: Container(
                       height: height(context) * 0.04,
                       width: width(context) * 0.3,
                       decoration: BoxDecoration(
-                          color: provider.selectedTripIndex == index
+                          color: provider.selectedAirTripIndex == index
                               ? AppColor.primary
                               : AppColor.secondaryShadev2,
                           borderRadius: BorderRadius.circular(10)),
@@ -46,7 +46,7 @@ class AirportTripScreen extends StatelessWidget {
                         "To Airport",
                         style: GoogleFonts.inter(
                           fontWeight: FontWeight.w600,
-                          color: provider.selectedTripIndex == index
+                          color: provider.selectedAirTripIndex == index
                               ? AppColor.black
                               : AppColor.white,
                         ),
@@ -215,7 +215,7 @@ class AirportTripScreen extends StatelessWidget {
                 4,
                 (index) => GestureDetector(
                   onTap: () {
-                    provider.selectedCab(index);
+                    provider.selectedAirCab(index);
                   },
                   child: Container(
                     padding:
@@ -223,7 +223,7 @@ class AirportTripScreen extends StatelessWidget {
                     height: height(context) * 0.11,
                     width: width(context) * 0.21,
                     decoration: BoxDecoration(
-                      color: provider.selectedCabIndex == index
+                      color: provider.selectedAirCabIndex == index
                           ? AppColor.primary
                           : AppColor.secondaryShadev2,
                       borderRadius: BorderRadius.circular(10),
@@ -244,7 +244,7 @@ class AirportTripScreen extends StatelessWidget {
                             style: GoogleFonts.inter(
                               fontWeight: FontWeight.w500,
                               fontSize: 13,
-                              color: provider.selectedCabIndex == index
+                              color: provider.selectedAirCabIndex == index
                                   ? AppColor.black
                                   : AppColor.white,
                             ),
