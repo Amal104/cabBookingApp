@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -99,8 +100,9 @@ class LoginScreen extends StatelessWidget {
                 height: height(context) * 0.03,
               ),
               customButton(context, "Get OTP", () {
+                HapticFeedback.lightImpact();
                 print(countryCode + controller.text);
-                Get.to(
+                Get.off(
                   () => const OtpScreen(),
                   transition: Transition.rightToLeft,
                 );

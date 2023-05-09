@@ -158,11 +158,31 @@ class AirportTripScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                    height: height(context) * 0.055,
-                    decoration: BoxDecoration(
-                      color: AppColor.secondaryShade,
-                      borderRadius: BorderRadius.circular(10),
+                  child: GestureDetector(
+                    onTap: () => provider.datePicker(context, "airport"),
+                    child: Container(
+                      height: height(context) * 0.055,
+                      decoration: BoxDecoration(
+                        color: AppColor.secondaryShade,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: provider.airportDate != ""
+                            ? Text(
+                                provider.airportDate,
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColor.white,
+                                ),
+                              )
+                            : Text(
+                                "Select Date & Time",
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColor.white,
+                                ),
+                              ),
+                      ),
                     ),
                   ),
                 ),

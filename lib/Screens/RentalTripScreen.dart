@@ -160,11 +160,31 @@ class RentalTripScreen extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      height: height(context) * 0.055,
-                      decoration: BoxDecoration(
-                        color: AppColor.secondaryShade,
-                        borderRadius: BorderRadius.circular(10),
+                    child: GestureDetector(
+                      onTap: () => provider.datePicker(context, "rental"),
+                      child: Container(
+                        height: height(context) * 0.055,
+                        decoration: BoxDecoration(
+                          color: AppColor.secondaryShade,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: provider.rentalOneWayDate != ""
+                              ? Text(
+                                  provider.rentalOneWayDate,
+                                  style: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColor.white,
+                                  ),
+                                )
+                              : Text(
+                                  "Select Date & Time",
+                                  style: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColor.white,
+                                  ),
+                                ),
+                        ),
                       ),
                     ),
                   ),
@@ -172,54 +192,70 @@ class RentalTripScreen extends StatelessWidget {
                     width: width(context) * 0.035,
                   ),
                   if (provider.selectedRentTripIndex != 1)
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: height(context) * 0.0125,
-                        horizontal: width(context) * 0.03,
-                      ),
-                      height: height(context) * 0.055,
-                      decoration: BoxDecoration(
-                        color: AppColor.secondaryShade,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Image.asset(
-                              "assets/icons/rupee.png",
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              "Personal Cash",
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15,
-                                color: AppColor.white,
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          vertical: height(context) * 0.0125,
+                          horizontal: width(context) * 0.03,
+                        ),
+                        height: height(context) * 0.055,
+                        decoration: BoxDecoration(
+                          color: AppColor.secondaryShade,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Image.asset(
+                                "assets/icons/rupee.png",
                               ),
                             ),
-                          )
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Text(
+                                "Personal Cash",
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15,
+                                  color: AppColor.white,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
                   if (provider.selectedRentTripIndex == 1)
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: height(context) * 0.0125,
-                        horizontal: width(context) * 0.03,
-                      ),
-                      height: height(context) * 0.055,
-                      decoration: BoxDecoration(
-                        color: AppColor.secondaryShade,
-                        borderRadius: BorderRadius.circular(10),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () => provider.datePicker(context, "rental2"),
+                        child: Container(
+                          height: height(context) * 0.055,
+                          decoration: BoxDecoration(
+                            color: AppColor.secondaryShade,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: provider.rentalReturnDate != ""
+                                ? Text(
+                                    provider.rentalReturnDate,
+                                    style: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColor.white,
+                                    ),
+                                  )
+                                : Text(
+                                    "Select Date & Time",
+                                    style: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColor.white,
+                                    ),
+                                  ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
               if (provider.selectedRentTripIndex == 1)
@@ -229,9 +265,9 @@ class RentalTripScreen extends StatelessWidget {
               if (provider.selectedRentTripIndex == 1)
                 Container(
                   padding: EdgeInsets.symmetric(
-                        vertical: height(context) * 0.0125,
-                        horizontal: width(context) * 0.03,
-                      ),
+                    vertical: height(context) * 0.0125,
+                    horizontal: width(context) * 0.03,
+                  ),
                   height: height(context) * 0.055,
                   width: width(context),
                   decoration: BoxDecoration(
@@ -240,26 +276,26 @@ class RentalTripScreen extends StatelessWidget {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Image.asset(
-                              "assets/icons/rupee.png",
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              "Personal Cash",
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15,
-                                color: AppColor.white,
-                              ),
-                            ),
-                          )
-                        ],
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Image.asset(
+                          "assets/icons/rupee.png",
+                        ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Text(
+                          "Personal Cash",
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                            color: AppColor.white,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               SizedBox(
                 height: height(context) * 0.015,
