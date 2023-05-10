@@ -80,7 +80,7 @@ class OtpScreen extends StatelessWidget {
                   () => const HomePage(),
                   transition: Transition.rightToLeft,
                 );
-              }),
+              }, 20),
             ],
           ),
         )),

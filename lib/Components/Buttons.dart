@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../values/values.dart';
 
-customButton(BuildContext context, String text, void Function()? function) =>
+customButton(BuildContext context, String text, void Function()? function,double radius) =>
     GestureDetector(
       onTap: function,
       child: Container(
@@ -10,7 +10,7 @@ customButton(BuildContext context, String text, void Function()? function) =>
         padding: EdgeInsets.symmetric(vertical: height(context) * 0.018),
         decoration: BoxDecoration(
           color: Colors.amber,
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(radius),
         ),
         child: Center(
           child: Text(

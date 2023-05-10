@@ -368,7 +368,13 @@ class CityTripScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     HapticFeedback.heavyImpact();
-                    provider.changeScreen();
+                    showModalBottomSheet(
+                       barrierColor: AppColor.transparent,
+                       backgroundColor: AppColor.transparent,
+                       elevation: 0,
+                      context: context,
+                      builder: (context) => const Estimate(),
+                    );
                   },
                   child: Container(
                     width: width(context),

@@ -30,7 +30,7 @@ class HomeBottomSheet extends StatelessWidget {
             ),
             child: TabBar(
               indicatorWeight: 3.5,
-              indicatorPadding: EdgeInsets.symmetric(horizontal: width(context)*0.015,vertical: height(context)*0.002),
+              indicatorPadding: EdgeInsets.symmetric(horizontal: width(context)*0.010,vertical: height(context)*0.002),
               labelPadding: EdgeInsets.zero,
               padding: EdgeInsets.zero,
                 labelColor: AppColor.white,

@@ -106,7 +106,7 @@ class LoginScreen extends StatelessWidget {
                   () => const OtpScreen(),
                   transition: Transition.rightToLeft,
                 );
-              }),
+              },20),
             ],
           ),
         )),
