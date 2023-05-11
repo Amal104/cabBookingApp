@@ -24,6 +24,7 @@ class Estimate extends StatelessWidget {
           ),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Estimated Amount",
@@ -31,6 +32,14 @@ class Estimate extends StatelessWidget {
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
                 color: AppColor.primary,
+              ),
+            ),
+            Container(
+              height: height(context)*0.2,
+              width: width(context)*0.2,
+              decoration: BoxDecoration(
+                color: AppColor.primary,
+                borderRadius: BorderRadius.circular(20)
               ),
             )
           ],

@@ -3,7 +3,7 @@ part of values;
 
 class AppColor {
   static const Color primary = Color(0xFFFFB901);
-  static const Color secondary = Color(0xFF141414);
+  static const Color secondary = Color(0xFF0E0E0E);
   static const Color secondaryShade = Color(0x24E7E7E7);
   static const Color secondaryShadev2 = Color(0xFF242527);
   static const Color white = Colors.white;
