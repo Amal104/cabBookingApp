@@ -61,6 +61,7 @@ class HomePage extends StatelessWidget {
             actions: null,
             color: AppColor.transparent,
             elevation: 0,
+            leadingWidth: width(context)*0.16,
           ),
         ),
         bottomSheet: const HomeBottomSheet(),

@@ -7,14 +7,17 @@ class CustomAppbar extends StatelessWidget {
   final List<Widget>? actions;
   final Color? color;
   final double? elevation;
+  final double leadingWidth;
 
-  const CustomAppbar(
-      {super.key,
-      required this.title,
-      required this.leading,
-      required this.actions,
-      required this.color,
-      required this.elevation});
+  const CustomAppbar({
+    super.key,
+    required this.title,
+    required this.leading,
+    required this.actions,
+    required this.color,
+    required this.elevation,
+    required this.leadingWidth,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class CustomAppbar extends StatelessWidget {
       actions: actions,
       elevation: elevation,
       automaticallyImplyLeading: false,
-      leadingWidth: width(context) * 0.16,
+      leadingWidth: leadingWidth,
     );
   }
 }

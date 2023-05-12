@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../values/values.dart';
 
 customButton(BuildContext context, String text, void Function()? function,double radius) =>
@@ -15,10 +16,10 @@ customButton(BuildContext context, String text, void Function()? function,double
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
+            style: GoogleFonts.inter(
               fontSize: 20,
               color: Colors.black,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),

@@ -87,7 +87,7 @@ class BookingProvider extends ChangeNotifier {
     if (newDate == null) {
       return;
     }
-    final initialTime = TimeOfDay.now();
+    final initialTime = TimeOfDay.now().addHour(1);
     final TimeOfDay? selectedTime = await showTimePicker(
         context: context, initialTime: initialTime, helpText: "Select time");
     final dateTime = newDate.applied(selectedTime!);

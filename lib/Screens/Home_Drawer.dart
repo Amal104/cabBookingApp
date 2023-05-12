@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taskiuser/Screens/Book_A_Trip.dart';
+import 'package:taskiuser/Screens/FAQ.dart';
 import 'package:taskiuser/Screens/My_History_Screen.dart';
 import 'package:taskiuser/Screens/Notification_Screen.dart';
 import 'package:taskiuser/Screens/Payments_Screen.dart';
@@ -165,7 +167,7 @@ class HomeScreenDrawer extends StatelessWidget {
                       ListTile(
                         onTap: () {
                           Get.to(
-                            () => const MyHistory(),
+                            () => const FaqScreen(),
                             transition: Transition.rightToLeft,
                           );
                         },
@@ -207,7 +209,7 @@ class HomeScreenDrawer extends StatelessWidget {
                       ListTile(
                         onTap: () {
                           Get.to(
-                            () => const MyHistory(),
+                            () => const BookATrip(),
                             transition: Transition.rightToLeft,
                           );
                         },
