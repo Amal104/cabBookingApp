@@ -470,6 +470,27 @@ class CityTripScreen extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                           ),
+                                          child: Center(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                SvgPicture.asset(
+                                                  "assets/icons/steeringwheel.svg",
+                                                  color: AppColor.primary,
+                                                  height: 25,
+                                                ),
+                                                Text(
+                                                  "Expert\nDrivers",
+                                                  textAlign: TextAlign.center,
+                                                  style: GoogleFonts.inter(
+                                                    color: AppColor.white,
+                                                    fontSize: 12,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
                                         ),
                                         Container(
                                           height: height(context) * 0.09,
@@ -478,6 +499,27 @@ class CityTripScreen extends StatelessWidget {
                                             color: AppColor.secondaryShadev2,
                                             borderRadius:
                                                 BorderRadius.circular(10),
+                                          ),
+                                          child: Center(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                SvgPicture.asset(
+                                                  "assets/icons/cashless.svg",
+                                                  color: AppColor.primary,
+                                                  height: 25,
+                                                ),
+                                                Text(
+                                                  "Cashless\nRides",
+                                                  textAlign: TextAlign.center,
+                                                  style: GoogleFonts.inter(
+                                                    color: AppColor.white,
+                                                    fontSize: 12,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ],

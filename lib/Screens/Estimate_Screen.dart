@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Provider/Booking_Provider.dart';
-import 'package:taskiuser/Widgets/Otp_Field.dart';
 import 'package:taskiuser/values/values.dart';
 
 class Estimate extends StatelessWidget {

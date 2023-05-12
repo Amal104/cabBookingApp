@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Screens/Login_Screen.dart';
 import 'Provider/Booking_Provider.dart';
-import 'Screens/Home_Screen.dart';
 
 void main() {
   runApp(const MyApp());
