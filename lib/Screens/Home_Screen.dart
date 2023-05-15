@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:taskiuser/Components/AppBar.dart';
 import 'package:taskiuser/Screens/Home_Drawer.dart';
-import 'package:taskiuser/Widgets/BottomSheet.dart';
 
 import '../Widgets/HomeBottomSheet.dart';
 import '../values/values.dart';
@@ -65,7 +61,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         bottomSheet: const HomeBottomSheet(),
-        body: Column(
+        body: const Column(
           children: [],
         ),
         drawer: const HomeScreenDrawer(),
