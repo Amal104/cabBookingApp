@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:taskiuser/Screens/Login_Screen.dart';
+import 'package:taskiuser/Provider/Login_Provider.dart';
+import 'package:taskiuser/Screens/Splash_Screen.dart';
 import 'Provider/Booking_Provider.dart';
 
 void main() {
@@ -16,16 +17,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => BookingProvider(),)
+        ChangeNotifierProvider(
+          create: (context) => BookingProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => LoginProvider(),
+        ),
       ],
       child: GetMaterialApp(
         title: 'taSki User',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.amber,
-          scaffoldBackgroundColor:  const Color(0xFF141414),
+          scaffoldBackgroundColor: const Color(0xFF141414),
         ),
-        home: const LoginScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

@@ -82,7 +82,7 @@ class CityTripScreen extends StatelessWidget {
                 SizedBox(
                   height: height(context) * 0.015,
                 ),
-                const CityTripBookingButton(),
+               CityTripBookingButton(provider: provider),
                 SizedBox(
                   height: height(context) * 0.01,
                 ),

@@ -185,27 +185,27 @@ class HomeScreenDrawer extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ListTile(
-                        onTap: () {
-                          Get.to(
-                            () => const MyHistory(),
-                            transition: Transition.rightToLeft,
-                          );
-                        },
-                        leading: const Icon(
-                          Icons.favorite,
-                          color: AppColor.primary,
-                          size: 25,
-                        ),
-                        title: Text(
-                          'Favourites',
-                          style: GoogleFonts.inter(
-                            color: AppColor.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
+                      // ListTile(
+                      //   onTap: () {
+                      //     Get.to(
+                      //       () => const MyHistory(),
+                      //       transition: Transition.rightToLeft,
+                      //     );
+                      //   },
+                      //   leading: const Icon(
+                      //     Icons.favorite,
+                      //     color: AppColor.primary,
+                      //     size: 25,
+                      //   ),
+                      //   title: Text(
+                      //     'Favourites',
+                      //     style: GoogleFonts.inter(
+                      //       color: AppColor.white,
+                      //       fontWeight: FontWeight.w500,
+                      //       fontSize: 18,
+                      //     ),
+                      //   ),
+                      // ),
                       ListTile(
                         onTap: () {
                           Get.to(

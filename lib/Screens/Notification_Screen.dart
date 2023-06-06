@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskiuser/Components/AppBar.dart';
 import 'package:taskiuser/Widgets/PageTitle.dart';
-
-import '../Tabs/PastTab.dart';
-import '../Tabs/UpcomingTab.dart';
 import '../values/values.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -13,53 +11,54 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(height(context) * 0.132),
-          child: CustomAppbarPage(
-            title: null,
-            leading: const PageTitle(title: "Notifications",padding: 40,),
-            actions: null,
-            color: AppColor.transparent,
-            elevation: 0,
-            leadingWidth: width(context) * 0.46,
-            bottom: TabBar(
-              padding: EdgeInsets.symmetric(
-                horizontal: width(context) * 0.05,
-              ),
-              labelColor: AppColor.white,
-              unselectedLabelColor: AppColor.grey700,
-              indicatorWeight: 3,
-              tabs: [
-                Tab(
-                  child: Text(
-                    "UPCOMING",
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+    return  Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(height(context) * 0.05),
+        child: CustomAppbar(
+          title: null,
+          leading: const PageTitle(title: "Notifications", padding: 14),
+          actions: null,
+          color: AppColor.transparent,
+          elevation: 0,
+          leadingWidth: width(context) * 0.45,
+        ),
+      ),
+      body: ListView.builder(
+        padding: EdgeInsets.symmetric(
+            vertical: height(context) * 0.04,
+            horizontal: width(context) * 0.03),
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: EdgeInsets.only(bottom: height(context) * 0.015),
+            width: width(context),
+            padding: EdgeInsets.symmetric(
+                vertical: height(context) * 0.018,
+                horizontal: width(context) * 0.04),
+            decoration: BoxDecoration(
+              color: AppColor.secondaryShadev2,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "yaayy 10% OFF on your next booking!!",
+                  style: GoogleFonts.inter(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: AppColor.white,
                   ),
                 ),
-                Tab(
-                  child: Text(
-                    "PAST",
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
+                const FaIcon(
+                  FontAwesomeIcons.solidBell,
+                  size: 20,
+                  color: AppColor.primary,
                 ),
               ],
             ),
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-          UpcomingTab(),
-          PastTab(),
-        ]),
+          );
+        },
       ),
     );
   }

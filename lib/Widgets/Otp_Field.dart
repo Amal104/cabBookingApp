@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import '../values/values.dart';
 
 Widget textFieldOTP(
-    {required bool first, required last, required BuildContext context}) {
+    {required bool first,
+    required TextEditingController controller,
+    required last,
+    required BuildContext context}) {
   return SizedBox(
     height: height(context) * 0.1,
     child: AspectRatio(
       aspectRatio: 0.85,
       child: TextField(
+        controller: controller,
         autofocus: true,
         onChanged: (value) {
           if (value.length == 1 && last == false) {

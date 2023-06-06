@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:taskiuser/Provider/Booking_Provider.dart';
 import 'package:taskiuser/Screens/Airport_TripScreen.dart';
 import 'package:taskiuser/Screens/City_TripScreen.dart';
 import 'package:taskiuser/Screens/Outstation_TripScreen.dart';
@@ -29,10 +31,12 @@ class HomeBottomSheet extends StatelessWidget {
               ),
             ),
             child: TabBar(
-              indicatorWeight: 3.5,
-              indicatorPadding: EdgeInsets.symmetric(horizontal: width(context)*0.010,vertical: height(context)*0.002),
-              labelPadding: EdgeInsets.zero,
-              padding: EdgeInsets.zero,
+                indicatorWeight: 3.5,
+                indicatorPadding: EdgeInsets.symmetric(
+                    horizontal: width(context) * 0.010,
+                    vertical: height(context) * 0.002),
+                labelPadding: EdgeInsets.zero,
+                padding: EdgeInsets.zero,
                 labelColor: AppColor.white,
                 unselectedLabelColor: AppColor.grey700,
                 tabs: [
@@ -44,7 +48,9 @@ class HomeBottomSheet extends StatelessWidget {
                           FontAwesomeIcons.city,
                           size: 12,
                         ),
-                        SizedBox(width: width(context)*0.01,),
+                        SizedBox(
+                          width: width(context) * 0.01,
+                        ),
                         const Text("City"),
                       ],
                     ),
@@ -57,7 +63,9 @@ class HomeBottomSheet extends StatelessWidget {
                           FontAwesomeIcons.planeDeparture,
                           size: 12,
                         ),
-                        SizedBox(width: width(context)*0.01,),
+                        SizedBox(
+                          width: width(context) * 0.01,
+                        ),
                         const Text("Airport"),
                       ],
                     ),
@@ -65,12 +73,14 @@ class HomeBottomSheet extends StatelessWidget {
                   Tab(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
+                      children: [
                         const FaIcon(
                           FontAwesomeIcons.car,
                           size: 12,
                         ),
-                        SizedBox(width: width(context)*0.01,),
+                        SizedBox(
+                          width: width(context) * 0.01,
+                        ),
                         const Text("Outstation"),
                       ],
                     ),
@@ -78,12 +88,14 @@ class HomeBottomSheet extends StatelessWidget {
                   Tab(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
+                      children: [
                         const FaIcon(
                           FontAwesomeIcons.solidClock,
                           size: 12,
                         ),
-                        SizedBox(width: width(context)*0.01,),
+                        SizedBox(
+                          width: width(context) * 0.01,
+                        ),
                         const Text("Rental"),
                       ],
                     ),
@@ -91,8 +103,7 @@ class HomeBottomSheet extends StatelessWidget {
                 ]),
           ),
           const Expanded(
-            child: TabBarView(
-              children: [
+            child: TabBarView(children: [
               CityTripScreen(),
               AirportTripScreen(),
               OutstationTripScreen(),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Widgets/PageTitle.dart';
 import 'package:taskiuser/values/values.dart';
 
@@ -21,9 +23,60 @@ class ProfileScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                PageTitle(
-                  title: "Profile",
-                  padding: width(context) * 0.14,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => const HomePage(),
+                        transition: Transition.leftToRight);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(left: width(context) * 0.02),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            height: height(context) * 0.05,
+                            decoration: BoxDecoration(
+                              color: AppColor.primary,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    right: width(context) * 0.05,
+                                    left: width(context) * 0.125),
+                                child: Text(
+                                  "Profile",
+                                  style: GoogleFonts.inter(
+                                    color: AppColor.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: width(context) * 0.11,
+                            height: height(context) * 0.052,
+                            decoration: BoxDecoration(
+                              color: AppColor.black,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.chevronLeft,
+                                color: AppColor.primary,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: width(context) * 0.03),

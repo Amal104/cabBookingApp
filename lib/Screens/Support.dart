@@ -31,20 +31,49 @@ class SupportScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => showModalBottomSheet(
+              barrierColor: const Color(0xE3000000),
               backgroundColor: AppColor.transparent,
               context: context,
               builder: (context) => Container(
-                height: height(context) * 0.25,
-                decoration: const BoxDecoration(
-                  color: AppColor.secondaryShadev2,
-                ),
+                height: height(context) * 0.35,
                 child: Column(
                   children: [
                     Expanded(
-                        child: Container(
-                      color: AppColor.black,
-                    )),
-                    Expanded(child: Container()),
+                      flex: 1,
+                      child: Container(
+                        color: AppColor.transparent,
+                        child: Align(
+                          child: Text(
+                            "How to book taSki?",
+                            style: GoogleFonts.inter(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.primary,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        width: width(context),
+                        color: AppColor.secondaryShade,
+                        child: Align(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Lorem ipsum dolor sit amet. Sed delectus fuga sit autem ipsam et officiis esse At rerum voluptatem. In deleniti corrupti hic dignissimos officia hic voluptas molestias nam error consequatur! Id Quis velit aut optio inventore eum facere accusamus? Et placeat voluptates id similique aliquam qui repudiandae voluptatem ut praesentium unde.",
+                              style: GoogleFonts.inter(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: AppColor.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

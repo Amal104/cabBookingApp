@@ -2,27 +2,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taskiuser/Components/Toast.dart';
+import 'package:taskiuser/Provider/Booking_Provider.dart';
 
 import '../Screens/Estimate_Screen.dart';
 import '../values/values.dart';
 
 class CityTripBookingButton extends StatelessWidget {
   const CityTripBookingButton({
-    super.key,
+    super.key, required this.provider,
   });
+
+  final  BookingProvider provider;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         HapticFeedback.heavyImpact();
-        showModalBottomSheet(
-          barrierColor: AppColor.transparent,
-          backgroundColor: AppColor.transparent,
-          elevation: 0,
-          context: context,
-          builder: (context) => const Estimate(),
-        );
+        showCustomToast(context, "Trip successfully booked!");
       },
       child: Container(
         width: width(context),

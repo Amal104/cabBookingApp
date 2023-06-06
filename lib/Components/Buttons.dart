@@ -19,7 +19,7 @@ customButton(BuildContext context, String text, void Function()? function,double
             style: GoogleFonts.inter(
               fontSize: 20,
               color: Colors.black,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
