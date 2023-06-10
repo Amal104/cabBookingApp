@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
+import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Screens/Splash_Screen.dart';
 import 'Provider/Booking_Provider.dart';
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.amber,
           scaffoldBackgroundColor: const Color(0xFF141414),
         ),
-        home: const SplashScreen(),
+        home: const HomePage(),
       ),
     );
   }
