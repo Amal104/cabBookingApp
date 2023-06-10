@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:taskiuser/Provider/Login_Provider.dart';
 import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Widgets/PageTitle.dart';
 import 'package:taskiuser/values/values.dart';
@@ -80,30 +82,34 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: width(context) * 0.03),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: width(context) * 0.035),
-                      height: height(context) * 0.05,
-                      decoration: BoxDecoration(
-                          color: AppColor.primary,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Row(
-                        children: [
-                          const FaIcon(FontAwesomeIcons.rightFromBracket),
-                          SizedBox(
-                            width: width(context) * 0.02,
-                          ),
-                          Text(
-                            "Logout",
-                            style: GoogleFonts.inter(
-                              color: AppColor.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                  child: Consumer<LoginProvider>(
+                    builder: (context, provider, child) => GestureDetector(
+                      onTap: () {
+                        provider.logout();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width(context) * 0.035),
+                        height: height(context) * 0.05,
+                        decoration: BoxDecoration(
+                            color: AppColor.primary,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Row(
+                          children: [
+                            const FaIcon(FontAwesomeIcons.rightFromBracket),
+                            SizedBox(
+                              width: width(context) * 0.02,
                             ),
-                          ),
-                        ],
+                            Text(
+                              "Logout",
+                              style: GoogleFonts.inter(
+                                color: AppColor.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

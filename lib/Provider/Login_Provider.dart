@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:taskiuser/Constants.dart';
 import 'package:taskiuser/Models/ErrorMessage.dart';
 import 'package:taskiuser/Models/SuccessMessage.dart';
 import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Screens/Profile_Screen.dart';
 import '../Models/VersionCheck_Model.dart';
+import '../Screens/Login_Screen.dart';
 import '../Screens/Otp_Screen.dart';
 
 class LoginProvider extends ChangeNotifier {
@@ -27,7 +29,7 @@ class LoginProvider extends ChangeNotifier {
   Future<void> fetchVersion() async {
     try {
       final response = await _dio.post(
-        "http://192.168.29.9:2021/login/android/user/v2/version",
+        ApiLinks.baseURL + ApiLinks.versionCheck,
         options: Options(
           headers: {'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A'},
         ),
@@ -45,7 +47,7 @@ class LoginProvider extends ChangeNotifier {
   Future<void> genarateOTP() async {
     try {
       final response = await _dio.post(
-        "http://192.168.29.60:2021/login/android/user/v2/otpGenerate",
+        ApiLinks.baseURL + ApiLinks.otpGenarate,
         data: {
           'mobile': phonecontroller.text,
           'code': countryCode,
@@ -80,7 +82,7 @@ class LoginProvider extends ChangeNotifier {
         otpcontroller4.text;
     try {
       final response = await _dio.post(
-        "http://192.168.29.9:2021/login/android/user/v2/otpVerification",
+        ApiLinks.baseURL + ApiLinks.otpVerification,
         data: {
           'mobile': phonecontroller.text,
           'code': countryCode,
@@ -121,6 +123,15 @@ class LoginProvider extends ChangeNotifier {
     } catch (e) {
       rethrow;
     }
+  }
+
+  logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove("userkey");
+    Get.off(
+      () => const LoginScreen(),
+      transition: Transition.rightToLeft,
+    );
   }
 
   Future<void> checkAppVersion(int supportingVersion) async {
