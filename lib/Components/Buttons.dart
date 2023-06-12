@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../values/values.dart';
 
-customButton(BuildContext context, String text, void Function()? function,double radius) =>
+Widget customButton(BuildContext context, String text,
+        void Function()? function, double radius) =>
     GestureDetector(
       onTap: function,
       child: Container(
         width: width(context),
         // margin: EdgeInsets.symmetric(horizontal: width(context) * 0.1),
-        padding: EdgeInsets.symmetric(vertical: height(context) * 0.018),
+        padding: EdgeInsets.symmetric(vertical: height(context) * 0.016),
         decoration: BoxDecoration(
           color: Colors.amber,
           borderRadius: BorderRadius.circular(radius),
@@ -17,9 +18,9 @@ customButton(BuildContext context, String text, void Function()? function,double
           child: Text(
             text,
             style: GoogleFonts.inter(
-              fontSize: 20,
+              fontSize: 18,
               color: Colors.black,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),

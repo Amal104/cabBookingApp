@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
-import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Widgets/Otp_Field.dart';
 import '../Components/Buttons.dart';
 import '../values/values.dart';

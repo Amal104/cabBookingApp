@@ -30,7 +30,7 @@ class HomeScreenDrawer extends StatelessWidget {
             onTap: () {
               Get.to(
                 () => const ProfileScreen(),
-                transition: Transition.rightToLeft,
+                transition: Transition.leftToRight,
               );
             },
             child: Container(

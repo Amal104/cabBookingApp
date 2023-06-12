@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:taskiuser/Components/Toast.dart';
 import 'package:taskiuser/Provider/Booking_Provider.dart';
 
@@ -19,7 +20,7 @@ class CityTripBookingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        HapticFeedback.heavyImpact();
+        HapticFeedback.lightImpact();
         showCustomToast(context, "Trip successfully booked!");
       },
       child: Container(

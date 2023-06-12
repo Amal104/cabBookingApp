@@ -3,10 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
-
-import '../Screens/Login_Screen.dart';
 import '../values/values.dart';
 
 class CustomAlertDialog {
