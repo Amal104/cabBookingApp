@@ -2,11 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:taskiuser/Components/Toast.dart';
 import 'package:taskiuser/Provider/Booking_Provider.dart';
-
-import '../Screens/Estimate_Screen.dart';
 import '../values/values.dart';
 
 class CityTripBookingButton extends StatelessWidget {
@@ -21,7 +18,7 @@ class CityTripBookingButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
-        showCustomToast(context, "Trip successfully booked!");
+        showSuccessToast(context, "Trip successfully booked!");
       },
       child: Container(
         width: width(context),

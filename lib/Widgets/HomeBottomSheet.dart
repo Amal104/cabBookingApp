@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:taskiuser/Provider/Booking_Provider.dart';
 import 'package:taskiuser/Screens/Airport_TripScreen.dart';
 import 'package:taskiuser/Screens/City_TripScreen.dart';
 import 'package:taskiuser/Screens/Outstation_TripScreen.dart';
 import 'package:taskiuser/Screens/RentalTripScreen.dart';
-
 import '../values/values.dart';
 
 class HomeBottomSheet extends StatelessWidget {

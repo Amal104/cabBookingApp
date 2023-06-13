@@ -56,75 +56,82 @@ class ProfileUpdate extends StatelessWidget {
             SizedBox(
               height: height(context) * 0.015,
             ),
-            isMobile ? Container(
-                  width: width(context),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: width(context) * 0.03),
-                  decoration: BoxDecoration(
-                    color: AppColor.secondaryShade,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: IntlPhoneField(
-                    showCountryFlag: false,
-                    initialCountryCode: "IN",
-                    onChanged: (value) {
-                    },
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(borderSide: BorderSide.none),
+            isMobile
+                ? Container(
+                    width: width(context),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: width(context) * 0.03),
+                    decoration: BoxDecoration(
+                      color: AppColor.secondaryShade,
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    autovalidateMode: AutovalidateMode.disabled,
-                    disableLengthCheck: true,
-                    dropdownTextStyle: const TextStyle(
-                      fontSize: 18,
-                      color: AppColor.white,
-                    ),
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: AppColor.white,
-                    ),
-                    dropdownIconPosition: IconPosition.trailing,
-                    dropdownIcon: const Icon(Icons.arrow_drop_down_outlined),
-                    pickerDialogStyle: PickerDialogStyle(
-                      backgroundColor: const Color(0xFF141414),
-                      countryCodeStyle: const TextStyle(
-                        color: AppColor.primary,
-                      ),
-                      countryNameStyle: const TextStyle(
-                        color: AppColor.white,
-                      ),
-                      searchFieldInputDecoration: const InputDecoration(
-                        border: OutlineInputBorder(
+                    child: IntlPhoneField(
+                      showCountryFlag: false,
+                      initialCountryCode: "IN",
+                      onChanged: (value) {},
+                      decoration: InputDecoration(
+                        hintText: update,
+                        hintStyle: GoogleFonts.inter(
+                          fontSize: 15,
+                          color: AppColor.grey,
+                        ),
+                        border: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
-                        hintText: "Search here..",
-                        hintStyle: TextStyle(
+                      ),
+                      autovalidateMode: AutovalidateMode.disabled,
+                      disableLengthCheck: true,
+                      dropdownTextStyle: const TextStyle(
+                        fontSize: 18,
+                        color: AppColor.white,
+                      ),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: AppColor.white,
+                      ),
+                      dropdownIconPosition: IconPosition.trailing,
+                      dropdownIcon: const Icon(Icons.arrow_drop_down_outlined),
+                      pickerDialogStyle: PickerDialogStyle(
+                        backgroundColor: const Color(0xFF141414),
+                        countryCodeStyle: const TextStyle(
+                          color: AppColor.primary,
+                        ),
+                        countryNameStyle: const TextStyle(
                           color: AppColor.white,
                         ),
-                        prefixIcon: Icon(Icons.search),
-                        prefixIconColor: AppColor.primary,
+                        searchFieldInputDecoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          hintText: "Search here..",
+                          hintStyle: TextStyle(
+                            color: AppColor.white,
+                          ),
+                          prefixIcon: Icon(Icons.search),
+                          prefixIconColor: AppColor.primary,
+                        ),
                       ),
                     ),
+                  )
+                : TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
+                      fillColor: AppColor.secondaryShade,
+                      filled: true,
+                      hintText: update,
+                      hintStyle: GoogleFonts.inter(
+                        fontSize: 15,
+                        color: AppColor.grey,
+                      ),
+                      contentPadding: const EdgeInsets.only(left: 12),
+                    ),
+                    style: GoogleFonts.inter(
+                      color: AppColor.white,
+                    ),
                   ),
-                ) :
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-                fillColor: AppColor.secondaryShade,
-                filled: true,
-                hintText: update,
-                hintStyle: GoogleFonts.inter(
-                  fontSize: 15,
-                  color: AppColor.grey,
-                ),
-                contentPadding: const EdgeInsets.only(left: 12),
-              ),
-              style: GoogleFonts.inter(
-                color: AppColor.white,
-              ),
-            ),
             SizedBox(
               height: height(context) * 0.03,
             ),

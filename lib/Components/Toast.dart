@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 
 import '../values/values.dart';
 
-showCustomToast(BuildContext context, String message) {
+showSuccessToast(BuildContext context, String message) {
   FToast fToast = FToast();
   fToast.init(context);
   Widget toast = Column(
@@ -14,7 +14,7 @@ showCustomToast(BuildContext context, String message) {
         "assets/Lottie/Successful.json",
         repeat: false,
         fit: BoxFit.cover,
-        height: height(context)*0.12,
+        height: height(context) * 0.12,
       ),
       Text(
         "Trip booked successfully!",
@@ -35,4 +35,32 @@ showCustomToast(BuildContext context, String message) {
 
 showSuccess() {
   LottieBuilder.asset("assets/Lottie/Successful.json");
+}
+
+showCustomToast(BuildContext context, String message) {
+  FToast fToast = FToast();
+  fToast.init(context);
+  Widget toast = Column(
+    children: [
+      Container(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        decoration: BoxDecoration(
+          color: AppColor.grey,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Text(
+          message,
+          style: GoogleFonts.inter(
+            fontSize: 10,
+            color: AppColor.black,
+          ),
+        ),
+      )
+    ],
+  );
+  fToast.showToast(
+    child: toast,
+    toastDuration: const Duration(seconds: 2),
+    gravity: ToastGravity.BOTTOM,
+  );
 }

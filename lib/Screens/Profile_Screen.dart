@@ -42,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
                             height: height(context) * 0.05,
                             decoration: BoxDecoration(
                               color: AppColor.primary,
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(25),
                             ),
                             child: Align(
                               alignment: Alignment.centerRight,
@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           Container(
                             width: width(context) * 0.11,
-                            height: height(context) * 0.052,
+                            height: height(context) * 0.050,
                             decoration: BoxDecoration(
                               color: AppColor.black,
                               borderRadius: BorderRadius.circular(20),
