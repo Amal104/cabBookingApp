@@ -8,8 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
 import 'package:taskiuser/Screens/Home_Screen.dart';
-import 'package:taskiuser/Widgets/Co-ProfileUpdate.dart';
-import 'package:taskiuser/Widgets/ProfileUpdate.dart';
+import 'package:taskiuser/Screens/Co-ProfileUpdate.dart';
+import 'package:taskiuser/Screens/ProfileUpdate.dart';
+import 'package:taskiuser/Screens/Profile_Signature_Screen.dart';
 import 'package:taskiuser/values/values.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -358,31 +359,39 @@ class ProfileData extends StatelessWidget {
         SizedBox(
           height: height(context) * 0.025,
         ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: width(context) * 0.05),
-          height: height(context) * 0.065,
-          width: width(context) * 0.8,
-          decoration: BoxDecoration(
-            color: AppColor.secondaryShade,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Signature",
-                style: GoogleFonts.inter(
-                  color: AppColor.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
+        GestureDetector(
+          onTap: () {
+            Get.to(
+              () => const SignatureScreen(),
+              transition: Transition.rightToLeft,
+            );
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: width(context) * 0.05),
+            height: height(context) * 0.065,
+            width: width(context) * 0.8,
+            decoration: BoxDecoration(
+              color: AppColor.secondaryShade,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Signature",
+                  style: GoogleFonts.inter(
+                    color: AppColor.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
                 ),
-              ),
-              const FaIcon(
-                FontAwesomeIcons.chevronRight,
-                color: AppColor.primary,
-                size: 20,
-              )
-            ],
+                const FaIcon(
+                  FontAwesomeIcons.chevronRight,
+                  color: AppColor.primary,
+                  size: 20,
+                )
+              ],
+            ),
           ),
         ),
       ],

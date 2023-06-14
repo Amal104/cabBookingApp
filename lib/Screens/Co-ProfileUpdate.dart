@@ -8,7 +8,7 @@ import 'package:taskiuser/Provider/Profile_Provider.dart';
 
 import '../Components/AppBar.dart';
 import '../values/values.dart';
-import 'PageTitle.dart';
+import '../Widgets/PageTitle.dart';
 
 class CoProfileUpdate extends StatelessWidget {
   const CoProfileUpdate({super.key});

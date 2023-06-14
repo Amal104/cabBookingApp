@@ -5,7 +5,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:taskiuser/Components/Buttons.dart';
 import '../Components/AppBar.dart';
 import '../values/values.dart';
-import 'PageTitle.dart';
+import '../Widgets/PageTitle.dart';
 
 class ProfileUpdate extends StatelessWidget {
   const ProfileUpdate(

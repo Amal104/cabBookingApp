@@ -50,6 +50,7 @@ dependencies:
   device_info_plus: ^9.0.2
   awesome_dialog: ^2.2.1
   lottie: ^2.4.0
+  signature: ^5.4.0
 
 dev_dependencies:
   flutter_test:
