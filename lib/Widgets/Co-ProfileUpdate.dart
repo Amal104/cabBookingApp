@@ -34,23 +34,23 @@ class CoProfileUpdate extends StatelessWidget {
             builder: (context, provider, child) => Column(
               children: [
                 SizedBox(
-                  height: height(context) * 0.03,
+                  height: height(context) * 0.04,
                 ),
                 CustomTextField.customBorderTextField(null, null, "Name"),
                 SizedBox(
-                  height: height(context) * 0.022,
+                  height: height(context) * 0.025,
                 ),
                 CustomTextField.customBorderTextField(null, null, "Email"),
                 SizedBox(
-                  height: height(context) * 0.022,
+                  height: height(context) * 0.025,
                 ),
                 CustomTextField.customBorderTextField(null, null, "Empolyee id"),
                 SizedBox(
-                  height: height(context) * 0.022,
+                  height: height(context) * 0.025,
                 ),
                 CustomTextField.customBorderTextField(null, null, "Designation"),
                 SizedBox(
-                  height: height(context) * 0.022,
+                  height: height(context) * 0.025,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -87,7 +87,7 @@ class CoProfileUpdate extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: height(context) * 0.012,
+                  height: height(context) * 0.015,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -128,17 +128,17 @@ class CoProfileUpdate extends StatelessWidget {
                 ),
                 CustomTextField.customBorderTextField(null, null, "Manager name"),
                 SizedBox(
-                  height: height(context) * 0.022,
+                  height: height(context) * 0.025,
                 ),
                 CustomTextField.customBorderTextField(
                     null, null, "Manager mobile"),
                 SizedBox(
-                  height: height(context) * 0.022,
+                  height: height(context) * 0.025,
                 ),
                 CustomTextField.customBorderTextField(
                     null, null, "Manager email"),
                 SizedBox(
-                  height: height(context) * 0.022,
+                  height: height(context) * 0.025,
                 ),
                 customButton(context, "UPDATE", () {}, 8)
               ],

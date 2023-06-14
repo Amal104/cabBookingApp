@@ -4,16 +4,13 @@ import '../values/values.dart';
 
 class CustomTextField {
   static customBorderTextField(
-    String? hint,
-    TextEditingController? controller,
-    String? label,
-  ) =>
+          String? hint, TextEditingController? controller, String? label) =>
       TextField(
         controller: controller,
         decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
-              color: AppColor.grey700,
+              color: AppColor.grey800,
               width: 2,
             ),
           ),
@@ -28,7 +25,7 @@ class CustomTextField {
           ),
           labelText: label,
           labelStyle: GoogleFonts.inter(
-            color: AppColor.white,
+            color: AppColor.grey,
             fontSize: 18,
           ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
