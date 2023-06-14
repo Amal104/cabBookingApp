@@ -1,65 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../values/values.dart';
 
 class CustomTextField {
-  final TextEditingController controller = TextEditingController();
-
-  customTextField(BuildContext context) => Container(
-        width: width(context),
-        // margin: EdgeInsets.symmetric(horizontal: width(context) * 0.08),
-        decoration: BoxDecoration(
-          color: const Color(0x0FE7E7E7),
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: InternationalPhoneNumberInput(
-          textFieldController: controller,
-          onInputChanged: (PhoneNumber number) {
-            print(number.phoneNumber);
-            controller.text = number.phoneNumber!;
-          },
-          onInputValidated: (bool value) {
-            print(value);
-          },
-          onSaved: (PhoneNumber number) {
-            controller.text = number.toString();
-          },
-          ignoreBlank: false,
-          autoValidateMode: AutovalidateMode.disabled,
-          textStyle: const TextStyle(
-            fontSize: 20,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1,
-          ),
-          inputDecoration: InputDecoration(
-              hintText: "Enter your mobile number",
-              hintStyle: TextStyle(
-                fontSize: 18,
-                color: Colors.grey.shade800,
-              ),
-              border: const OutlineInputBorder(borderSide: BorderSide.none)),
-          selectorTextStyle: const TextStyle(
-            fontSize: 20,
-            color: Colors.white,
-          ),
-          textAlignVertical: TextAlignVertical.center,
-          searchBoxDecoration: const InputDecoration(
-            prefixIcon: Icon(Icons.search),
-            hintText: "Search here",
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
+  static customBorderTextField(
+    String? hint,
+    TextEditingController? controller,
+    String? label,
+  ) =>
+      TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColor.grey700,
+              width: 2,
             ),
           ),
-          countrySelectorScrollControlled: false,
-          selectorConfig: const SelectorConfig(
-            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-            showFlags: false,
-            setSelectorButtonAsPrefixIcon: true,
-            trailingSpace: false,
-            leadingPadding: 10,
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColor.white,
+              width: 2.5,
+            ),
           ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          labelText: label,
+          labelStyle: GoogleFonts.inter(
+            color: AppColor.white,
+            fontSize: 18,
+          ),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: hint,
+          hintStyle: GoogleFonts.inter(
+            fontSize: 15,
+            color: AppColor.grey,
+          ),
+          contentPadding: const EdgeInsets.only(left: 12),
+        ),
+        style: GoogleFonts.inter(
+          color: AppColor.white,
         ),
       );
 }
