@@ -53,10 +53,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
             Signature(
               controller: controller,
               backgroundColor: AppColor.black,
-              height: height(context) * 0.5,
+              height: height(context) * 0.6,
             ),
             SizedBox(
-              height: height(context) * 0.1,
+              height: height(context) * 0.06,
             ),
             buildButtons(context),
           ],
