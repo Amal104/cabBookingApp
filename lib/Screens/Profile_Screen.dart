@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,140 +20,64 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(
-              height: height(context) * 0.01,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Get.to(() => const HomePage(),
-                        transition: Transition.leftToRight);
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(left: width(context) * 0.02),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                            height: height(context) * 0.05,
-                            decoration: BoxDecoration(
-                              color: AppColor.primary,
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    right: width(context) * 0.05,
-                                    left: width(context) * 0.125),
-                                child: Text(
-                                  "Profile",
-                                  style: GoogleFonts.inter(
-                                    color: AppColor.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              SizedBox(
+                height: height(context) * 0.01,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => const HomePage(),
+                          transition: Transition.leftToRight);
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(left: width(context) * 0.02),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Container(
+                              height: height(context) * 0.05,
+                              decoration: BoxDecoration(
+                                color: AppColor.primary,
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      right: width(context) * 0.05,
+                                      left: width(context) * 0.125),
+                                  child: Text(
+                                    "Profile",
+                                    style: GoogleFonts.inter(
+                                      color: AppColor.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: width(context) * 0.11,
-                            height: height(context) * 0.050,
-                            decoration: BoxDecoration(
-                              color: AppColor.black,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: const Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.chevronLeft,
-                                color: AppColor.primary,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: width(context) * 0.03),
-                  child: Consumer<LoginProvider>(
-                    builder: (context, provider, child) => GestureDetector(
-                      onTap: () {
-                        // CustomAlertDialog.logOutyescancelDialog(
-                        //     context, "Logout", "Do you want to logout?");
-                        AwesomeDialog(
-                          context: context,
-                          animType: AnimType.SCALE,
-                          headerAnimationLoop: false,
-                          title: "Logout",
-                          desc: "Do you want to logout?",
-                          btnCancelText: "Cancel",
-                          btnOkText: "Ok",
-                          dialogType: DialogType.WARNING,
-                          btnCancelColor: AppColor.primary,
-                          btnOk: TextButton(
-                            child: Text(
-                              "Ok",
-                              style: GoogleFonts.inter(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                            Container(
+                              width: width(context) * 0.11,
+                              height: height(context) * 0.050,
+                              decoration: BoxDecoration(
                                 color: AppColor.black,
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                            ),
-                            onPressed: () {
-                              provider.logout();
-                            },
-                          ),
-                          btnCancel: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: AppColor.primary,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            onPressed: () {
-                              Get.back();
-                            },
-                            child: Text(
-                              "Cancel",
-                              style: GoogleFonts.inter(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: AppColor.black,
-                              ),
-                            ),
-                          ),
-                        ).show();
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: width(context) * 0.035),
-                        height: height(context) * 0.05,
-                        decoration: BoxDecoration(
-                            color: AppColor.primary,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Row(
-                          children: [
-                            const FaIcon(FontAwesomeIcons.rightFromBracket),
-                            SizedBox(
-                              width: width(context) * 0.02,
-                            ),
-                            Text(
-                              "Logout",
-                              style: GoogleFonts.inter(
-                                color: AppColor.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                              child: const Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.chevronLeft,
+                                  color: AppColor.primary,
+                                  size: 20,
+                                ),
                               ),
                             ),
                           ],
@@ -160,49 +85,127 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: height(context) * 0.04,
-            ),
-            Hero(
-              tag: "Profile",
-              child: Container(
-                height: height(context) * 0.08,
-                width: width(context) * 0.17,
-                decoration: BoxDecoration(
-                    color: AppColor.primary,
-                    borderRadius: BorderRadius.circular(12)),
-                child: Center(
-                  child: FaIcon(
-                    FontAwesomeIcons.solidUser,
-                    color: AppColor.secondaryShadev2,
-                    size: height(context) * 0.042,
+                  Padding(
+                    padding: EdgeInsets.only(right: width(context) * 0.03),
+                    child: Consumer<LoginProvider>(
+                      builder: (context, provider, child) => GestureDetector(
+                        onTap: () {
+                          // CustomAlertDialog.logOutyescancelDialog(
+                          //     context, "Logout", "Do you want to logout?");
+                          AwesomeDialog(
+                            context: context,
+                            animType: AnimType.SCALE,
+                            headerAnimationLoop: false,
+                            title: "Logout",
+                            desc: "Do you want to logout?",
+                            btnCancelText: "Cancel",
+                            btnOkText: "Ok",
+                            dialogType: DialogType.WARNING,
+                            btnCancelColor: AppColor.primary,
+                            btnOk: TextButton(
+                              child: Text(
+                                "Ok",
+                                style: GoogleFonts.inter(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.black,
+                                ),
+                              ),
+                              onPressed: () {
+                                provider.logout();
+                              },
+                            ),
+                            btnCancel: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: AppColor.primary,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              onPressed: () {
+                                Get.back();
+                              },
+                              child: Text(
+                                "Cancel",
+                                style: GoogleFonts.inter(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.black,
+                                ),
+                              ),
+                            ),
+                          ).show();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: width(context) * 0.035),
+                          height: height(context) * 0.05,
+                          decoration: BoxDecoration(
+                              color: AppColor.primary,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            children: [
+                              const FaIcon(FontAwesomeIcons.rightFromBracket),
+                              SizedBox(
+                                width: width(context) * 0.02,
+                              ),
+                              Text(
+                                "Logout",
+                                style: GoogleFonts.inter(
+                                  color: AppColor.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: height(context) * 0.04,
+              ),
+              Hero(
+                tag: "Profile",
+                child: Container(
+                  height: height(context) * 0.08,
+                  width: width(context) * 0.17,
+                  decoration: BoxDecoration(
+                      color: AppColor.primary,
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Center(
+                    child: FaIcon(
+                      FontAwesomeIcons.solidUser,
+                      color: AppColor.secondaryShadev2,
+                      size: height(context) * 0.042,
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: height(context) * 0.015,
-            ),
-            Text(
-              "Dev Akash",
-              style: GoogleFonts.inter(
-                color: AppColor.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                letterSpacing: 0.5,
+              SizedBox(
+                height: height(context) * 0.015,
               ),
-            ),
-            SizedBox(
-              height: height(context) * 0.03,
-            ),
-            SizedBox(
-              width: width(context) * 0.8,
-              child: const ProfileData(),
-            ),
-          ],
+              Text(
+                "Dev Akash",
+                style: GoogleFonts.inter(
+                  color: AppColor.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  letterSpacing: 0.5,
+                ),
+              ),
+              SizedBox(
+                height: height(context) * 0.03,
+              ),
+              SizedBox(
+                width: width(context) * 0.8,
+                child: const ProfileData(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -307,6 +310,7 @@ class ProfileData extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
+            HapticFeedback.mediumImpact();
             Get.to(
               () => const CoProfileUpdate(),
               transition: Transition.rightToLeft,
@@ -361,6 +365,7 @@ class ProfileData extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
+            HapticFeedback.mediumImpact();
             Get.to(
               () => const SignatureScreen(),
               transition: Transition.rightToLeft,
@@ -419,6 +424,7 @@ class ProfileDataField extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        HapticFeedback.mediumImpact();
         Get.to(
           () => ProfileUpdate(
             title: title,

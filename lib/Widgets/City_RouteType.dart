@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,7 +6,8 @@ import '../values/values.dart';
 
 class CityRouteType extends StatelessWidget {
   const CityRouteType({
-    super.key, required this.provider,
+    super.key,
+    required this.provider,
   });
 
   final BookingProvider provider;
@@ -34,15 +34,16 @@ class CityRouteType extends StatelessWidget {
                       : AppColor.secondaryShadev2,
                   borderRadius: BorderRadius.circular(10)),
               child: Center(
-                  child: Text(
-                "ONE WAY",
-                style: GoogleFonts.inter(
-                  fontWeight: FontWeight.w600,
-                  color: provider.selectedCityTripIndex == index
-                      ? AppColor.black
-                      : AppColor.white,
+                child: Text(
+                  "One way",
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w500,
+                    color: provider.selectedCityTripIndex == index
+                        ? AppColor.black
+                        : AppColor.white,
+                  ),
                 ),
-              )),
+              ),
             ),
           ),
         ),

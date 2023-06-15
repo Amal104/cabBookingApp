@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -135,7 +136,7 @@ class ProfileUpdate extends StatelessWidget {
             SizedBox(
               height: height(context) * 0.03,
             ),
-            customButton(context, "UPDATE", () {}, 25)
+            customButton(context, "UPDATE", () {HapticFeedback.lightImpact();}, 25)
           ],
         ),
       ),

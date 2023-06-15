@@ -119,7 +119,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -139,7 +139,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -160,7 +160,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -181,7 +181,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -202,7 +202,7 @@ class HomeScreenDrawer extends StatelessWidget {
                       //     style: GoogleFonts.inter(
                       //       color: AppColor.white,
                       //       fontWeight: FontWeight.w500,
-                      //       fontSize: 18,
+                      //       fontSize: 16,
                       //     ),
                       //   ),
                       // ),
@@ -223,7 +223,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -244,7 +244,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -268,7 +268,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -292,7 +292,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -316,7 +316,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -339,7 +339,7 @@ class HomeScreenDrawer extends StatelessWidget {
                           style: GoogleFonts.inter(
                             color: AppColor.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -358,7 +358,7 @@ class HomeScreenDrawer extends StatelessWidget {
                               style: GoogleFonts.sacramento(
                                 color: AppColor.primary,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                                fontSize: 16,
                               ),
                             ),
                             Text(

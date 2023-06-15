@@ -67,7 +67,7 @@ class CityTripScreen extends StatelessWidget {
                             "Personal Cash",
                             style: GoogleFonts.inter(
                               fontWeight: FontWeight.w500,
-                              fontSize: 15,
+                              fontSize: 14,
                               color: AppColor.white,
                             ),
                           ),

@@ -33,6 +33,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.secondaryShadev2,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(height(context) * 0.05),
         child: CustomAppbar(
@@ -48,12 +49,12 @@ class _SignatureScreenState extends State<SignatureScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: height(context) * 0.1,
+              height: height(context) * 0.05,
             ),
             Signature(
               controller: controller,
               backgroundColor: AppColor.black,
-              height: height(context) * 0.6,
+              height: height(context) * 0.65,
             ),
             SizedBox(
               height: height(context) * 0.06,
@@ -88,7 +89,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
                 offset: Offset(4, 4),
               ),
               BoxShadow(
-                color: AppColor.grey800,
+                color: AppColor.grey700,
                 spreadRadius: 1,
                 blurRadius: 8,
                 offset: Offset(-4, -4),
@@ -120,7 +121,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
               offset: Offset(-4, -4),
             ),
             BoxShadow(
-              color: AppColor.grey800,
+              color: AppColor.grey700,
               spreadRadius: 1,
               blurRadius: 8,
               offset: Offset(4, 4),

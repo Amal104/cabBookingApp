@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
@@ -6,7 +7,11 @@ import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'Provider/Booking_Provider.dart';
 import 'Provider/Profile_Provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 

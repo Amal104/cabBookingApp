@@ -73,9 +73,13 @@ class HomePage extends StatelessWidget {
             ),
           ),
           bottomSheet: const HomeBottomSheet(),
-          body: const Column(
-            children: [],
-          ),
+          body: SizedBox(
+            height: height(context)*0.5,
+            width: width(context),
+              child: Image.asset(
+            "assets/images/map.png",
+            fit: BoxFit.cover,
+          )),
           drawer: const HomeScreenDrawer(),
         ),
       ),

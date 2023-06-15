@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -36,19 +37,26 @@ class CoProfileUpdate extends StatelessWidget {
                 SizedBox(
                   height: height(context) * 0.04,
                 ),
-                CustomTextField.customBorderTextField(null, null, "Name"),
+                CustomTextField.customBorderTextField(
+                  null,
+                  provider.nameControler,
+                  "Name",
+                ),
                 SizedBox(
                   height: height(context) * 0.025,
                 ),
-                CustomTextField.customBorderTextField(null, null, "Email"),
+                CustomTextField.customBorderTextField(
+                    null, provider.emailControler, "Email"),
                 SizedBox(
                   height: height(context) * 0.025,
                 ),
-                CustomTextField.customBorderTextField(null, null, "Empolyee id"),
+                CustomTextField.customBorderTextField(
+                    null, provider.employeeIdControler, "Empolyee id"),
                 SizedBox(
                   height: height(context) * 0.025,
                 ),
-                CustomTextField.customBorderTextField(null, null, "Designation"),
+                CustomTextField.customBorderTextField(
+                    null, provider.designationControler, "Designation"),
                 SizedBox(
                   height: height(context) * 0.025,
                 ),
@@ -126,21 +134,29 @@ class CoProfileUpdate extends StatelessWidget {
                 SizedBox(
                   height: height(context) * 0.025,
                 ),
-                CustomTextField.customBorderTextField(null, null, "Manager name"),
+                CustomTextField.customBorderTextField(
+                    null, provider.managerNameControler, "Manager name"),
                 SizedBox(
                   height: height(context) * 0.025,
                 ),
                 CustomTextField.customBorderTextField(
-                    null, null, "Manager mobile"),
+                    null, provider.managerMobileControler, "Manager mobile"),
                 SizedBox(
                   height: height(context) * 0.025,
                 ),
                 CustomTextField.customBorderTextField(
-                    null, null, "Manager email"),
+                    null, provider.managerEmailControler, "Manager email"),
                 SizedBox(
                   height: height(context) * 0.025,
                 ),
-                customButton(context, "UPDATE", () {}, 8)
+                customButton(
+                  context,
+                  "UPDATE",
+                  () {
+                    HapticFeedback.lightImpact();
+                  },
+                  8,
+                ),
               ],
             ),
           ),

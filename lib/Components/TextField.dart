@@ -25,7 +25,7 @@ class CustomTextField {
           ),
           labelText: label,
           labelStyle: GoogleFonts.inter(
-            color: AppColor.grey,
+            color: const Color(0xFFB4B4B4),
             fontSize: 18,
           ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
