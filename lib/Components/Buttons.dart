@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../values/values.dart';
 
 Widget customButton(BuildContext context, String text,
-    void Function()? function, double radius) {
+    void Function()? function, double radius,List<BoxShadow>? boxshadow) {
   return GestureDetector(
     onTap: function,
     child: Container(
@@ -14,6 +14,7 @@ Widget customButton(BuildContext context, String text,
       decoration: BoxDecoration(
         color: Colors.amber,
         borderRadius: BorderRadius.circular(radius),
+        boxShadow: boxshadow,
       ),
       child: Center(
         child: Text(

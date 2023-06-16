@@ -25,6 +25,13 @@ class BookingProvider extends ChangeNotifier {
   int selectedRentTripIndex = 0;
   int selectedRentHourIndex = 0;
 
+  double starRating = 0;
+
+  bool ratingCheckBoxValue1 = false;
+  bool ratingCheckBoxValue2 = false;
+  bool ratingCheckBoxValue3 = false;
+  bool ratingCheckBoxValue4 = false;
+
   void swap() {
     k = cityTripFromController.text;
     cityTripToController.text = cityTripFromController.text;
@@ -124,13 +131,39 @@ class BookingProvider extends ChangeNotifier {
     }
   }
 
-  changeScreen(){
-    a=true;
+  changeScreen() {
+    a = true;
     notifyListeners();
   }
-  changeScreenback(){
-    a=false;
+
+  changeScreenback() {
+    a = false;
     notifyListeners();
     print("hehehe");
+  }
+
+  starRatingData(double value) {
+    starRating = value;
+    notifyListeners();
+  }
+
+  ratingValue1Data(bool? value) {
+    ratingCheckBoxValue1 = value!;
+    notifyListeners();
+  }
+
+  ratingValue2Data(bool? value) {
+    ratingCheckBoxValue2 = value!;
+    notifyListeners();
+  }
+
+  ratingValue3Data(bool? value) {
+    ratingCheckBoxValue3 = value!;
+    notifyListeners();
+  }
+
+  ratingValue4Data(bool? value) {
+    ratingCheckBoxValue4 = value!;
+    notifyListeners();
   }
 }

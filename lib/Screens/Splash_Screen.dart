@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    tokencheck();
+    // tokencheck();
   }
 
   tokencheck() async {
@@ -58,35 +58,49 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           SizedBox(
-            height: height(context) * 0.5,
+            height: height(context) * 0.09,
+          ),
+          Image.asset(
+            "assets/images/LoginImage.PNG",
+            height: height(context) * 0.35,
+          ),
+          SizedBox(
+            height: height(context) * 0.07,
           ),
           Align(
             alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "book your",
-                    style: GoogleFonts.inter(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.white,
-                      letterSpacing: 0.5,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(
+                  "assets/images/LoginBubble.PNG",
+                  height: height(context) * 0.15,
+                ),
+                SizedBox(width: width(context)*0.045,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "book your",
+                      style: GoogleFonts.inter(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w500,
+                        color: AppColor.white,
+                        letterSpacing: 0.7,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "taSki",
-                    style: GoogleFonts.inter(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      color: AppColor.primary,
-                      letterSpacing: 0.5,
+                    Text(
+                      "taSki",
+                      style: GoogleFonts.inter(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                        color: AppColor.primary,
+                        letterSpacing: 0.7,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],

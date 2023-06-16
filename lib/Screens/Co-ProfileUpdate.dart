@@ -58,7 +58,7 @@ class CoProfileUpdate extends StatelessWidget {
                 CustomTextField.customBorderTextField(
                     null, provider.designationControler, "Designation"),
                 SizedBox(
-                  height: height(context) * 0.025,
+                  height: height(context) * 0.02,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -156,6 +156,7 @@ class CoProfileUpdate extends StatelessWidget {
                     HapticFeedback.lightImpact();
                   },
                   8,
+                  null,
                 ),
               ],
             ),

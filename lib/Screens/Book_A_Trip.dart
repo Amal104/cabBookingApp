@@ -115,14 +115,20 @@ class BookATrip extends StatelessWidget {
             SizedBox(
               height: height(context) * 0.03,
             ),
-            customButton(context, "Continue", () {
-              showModalBottomSheet(
-                backgroundColor: AppColor.transparent,
-                barrierColor: AppColor.transparent,
-                context: context,
-                builder: (context) => Estimate(),
-              );
-            }, 10)
+            customButton(
+              context,
+              "Continue",
+              () {
+                showModalBottomSheet(
+                  backgroundColor: AppColor.transparent,
+                  barrierColor: AppColor.transparent,
+                  context: context,
+                  builder: (context) => Estimate(),
+                );
+              },
+              10,
+              null,
+            )
           ],
         ),
       ),

@@ -15,7 +15,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -119,6 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     provider.genarateOTP();
                   },
                   15,
+                  null,
                 ),
               ],
             ),

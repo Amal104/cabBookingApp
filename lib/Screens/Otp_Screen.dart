@@ -99,6 +99,7 @@ class OtpScreen extends StatelessWidget {
                     provider.otpVerification();
                   },
                   15,
+                  null,
                 ),
               ],
             ),
