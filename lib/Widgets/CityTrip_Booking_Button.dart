@@ -1,17 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskiuser/Components/Toast.dart';
 import 'package:taskiuser/Provider/Booking_Provider.dart';
+import 'package:taskiuser/Screens/Rating_Screen.dart';
 import '../values/values.dart';
 
 class CityTripBookingButton extends StatelessWidget {
   const CityTripBookingButton({
-    super.key, required this.provider,
+    super.key,
+    required this.provider,
   });
 
-  final  BookingProvider provider;
+  final BookingProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,9 @@ class CityTripBookingButton extends StatelessWidget {
       onTap: () {
         HapticFeedback.lightImpact();
         showSuccessToast(context, "Trip successfully booked!");
+        Future.delayed(const Duration(seconds: 3), () {
+          Get.to(() => const RatingScreen(), transition: Transition.zoom);
+        });
       },
       child: Container(
         width: width(context),

@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     HapticFeedback.lightImpact();
                     provider.genarateOTP();
                   },
-                  15,
+                  8,
                   null,
                 ),
               ],

@@ -98,7 +98,7 @@ class OtpScreen extends StatelessWidget {
                     HapticFeedback.lightImpact();
                     provider.otpVerification();
                   },
-                  15,
+                  8,
                   null,
                 ),
               ],

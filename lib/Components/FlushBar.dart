@@ -9,7 +9,7 @@ class CustomFlushBar {
       title: title,
       titleColor: AppColor.primary,
       message: msg,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       animationDuration: const Duration(milliseconds: 400),
       backgroundColor: AppColor.black,
       flushbarPosition: FlushbarPosition.TOP,

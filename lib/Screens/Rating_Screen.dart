@@ -122,7 +122,7 @@ class RatingScreen extends StatelessWidget {
                               "Rate Your Ride",
                               style: GoogleFonts.inter(
                                 fontSize: 13,
-                                color: Color.fromARGB(255, 139, 139, 139),
+                                color: const Color.fromARGB(255, 139, 139, 139),
                               ),
                             ),
                             RatingBar.builder(
@@ -192,6 +192,7 @@ class RatingScreen extends StatelessWidget {
                         "Rate Your Trip",
                         () {
                           HapticFeedback.lightImpact();
+                          Navigator.of(context).pop();
                           CustomFlushBar.customFlushBar(
                             context,
                             "Hey Akash",
