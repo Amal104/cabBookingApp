@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../values/values.dart';
 
 class CustomTextField {
-  static customBorderTextField(
+  static Widget customBorderTextField(
           String? hint, TextEditingController? controller, String? label) =>
       TextField(
         controller: controller,

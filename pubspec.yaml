@@ -52,6 +52,7 @@ dependencies:
   lottie: ^2.4.0
   signature: ^5.4.0
   flutter_rating_bar: ^4.0.1
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:

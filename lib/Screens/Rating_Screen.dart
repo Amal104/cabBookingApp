@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,7 +7,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Components/Buttons.dart';
+import 'package:taskiuser/Components/FlushBar.dart';
 import 'package:taskiuser/Provider/Booking_Provider.dart';
+import '../Widgets/RatingCheckBox.dart';
 import '../values/values.dart';
 
 class RatingScreen extends StatelessWidget {
@@ -184,70 +187,35 @@ class RatingScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: width(context) * 0.15),
-                      child: customButton(context, "Rate Your Trip", () {
-                        HapticFeedback.lightImpact();
-                      }, 5, const [
-                        BoxShadow(
-                          color: AppColor.black,
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: Offset(-4, -4),
-                        ),
-                        BoxShadow(
-                          color: AppColor.grey800,
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: Offset(4, 4),
-                        )
-                      ]),
-                    )
+                      child: customButton(
+                        context,
+                        "Rate Your Trip",
+                        () {
+                          HapticFeedback.lightImpact();
+                          CustomFlushBar.customFlushBar(
+                            context,
+                            "Hey Akash",
+                            "Thank you for your rating",
+                          );
+                        },
+                        5,
+                        const [
+                          BoxShadow(
+                            color: AppColor.black,
+                            spreadRadius: 1,
+                            blurRadius: 8,
+                            offset: Offset(-4, -4),
+                          ),
+                          BoxShadow(
+                            color: AppColor.grey800,
+                            spreadRadius: 1,
+                            blurRadius: 8,
+                            offset: Offset(4, 4),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class RatingCheckBox extends StatelessWidget {
-  const RatingCheckBox({
-    super.key,
-    this.value,
-    required this.title,
-    this.function,
-  });
-
-  final bool? value;
-  final String title;
-  final void Function(bool?)? function;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: width(context) * 0.05),
-      child: SizedBox(
-        height: 50,
-        width: width(context) * 0.8,
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            unselectedWidgetColor: Colors.white,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Checkbox(
-                value: value,
-                checkColor: AppColor.black,
-                onChanged: function,
-              ),
-              Text(
-                title,
-                style: GoogleFonts.inter(
-                  color: AppColor.white,
-                  fontSize: 14,
                 ),
               ),
             ],
