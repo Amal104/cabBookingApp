@@ -28,7 +28,7 @@ class RatingScreen extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 80),
+                padding: EdgeInsets.only(top: height(context)*0.08),
                 child: SizedBox(
                   height: height(context),
                   width: width(context),
@@ -39,15 +39,15 @@ class RatingScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 70,
-                right: 25,
+                top: height(context)*0.075,
+                right: width(context)*0.05,
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    height: 40,
-                    width: 40,
+                    height: height(context)*0.05,
+                    width: width(context)*0.1,
                     decoration: const BoxDecoration(
                         color: AppColor.black, shape: BoxShape.circle),
                     child: const Center(
@@ -127,6 +127,7 @@ class RatingScreen extends StatelessWidget {
                             ),
                             RatingBar.builder(
                               itemSize: 30,
+                              glowRadius: 1,
                               initialRating: 3.5,
                               minRating: 1,
                               direction: Axis.horizontal,

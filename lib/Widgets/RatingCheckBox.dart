@@ -20,7 +20,7 @@ class RatingCheckBox extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: width(context) * 0.05),
       child: SizedBox(
-        height: 50,
+        height: height(context)*0.06,
         width: width(context) * 0.8,
         child: Theme(
           data: Theme.of(context).copyWith(
