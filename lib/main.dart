@@ -7,7 +7,7 @@ import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Screens/Rating_Screen.dart';
 import 'Provider/Booking_Provider.dart';
 import 'Provider/Profile_Provider.dart';
-
+  
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
