@@ -102,7 +102,7 @@ class CityTripInput extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            provider.swap();
+            provider.cityTripInputSwap();
             HapticFeedback.lightImpact();
           },
           child: Container(

@@ -68,6 +68,7 @@ class AirportTripScreen extends StatelessWidget {
                       SizedBox(
                         height: height(context) * 0.06,
                         child: TextField(
+                          controller: provider.airportTripFromController,
                           style: GoogleFonts.inter(
                               color: AppColor.white,
                               fontWeight: FontWeight.w500),
@@ -104,6 +105,7 @@ class AirportTripScreen extends StatelessWidget {
                       SizedBox(
                         height: height(context) * 0.06,
                         child: TextField(
+                          controller: provider.airportTripToController,
                           style: GoogleFonts.inter(
                               color: AppColor.white,
                               fontWeight: FontWeight.w500),
@@ -137,16 +139,19 @@ class AirportTripScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(6),
-                  height: height(context) * 0.045,
-                  width: width(context) * 0.085,
-                  decoration: BoxDecoration(
-                      color: AppColor.primary,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: SvgPicture.asset(
-                    "assets/icons/arrows.svg",
-                    fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () => provider.airportTripInputSwap(),
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    height: height(context) * 0.045,
+                    width: width(context) * 0.085,
+                    decoration: BoxDecoration(
+                        color: AppColor.primary,
+                        borderRadius: BorderRadius.circular(5)),
+                    child: SvgPicture.asset(
+                      "assets/icons/arrows.svg",
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ],

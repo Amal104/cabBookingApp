@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:taskiuser/Provider/Login_Provider.dart';
 import '../values/values.dart';
 
 Widget textFieldOTP(
     {required bool first,
     required TextEditingController controller,
     required last,
-    required BuildContext context}) {
+    required BuildContext context,
+    required LoginProvider provider}) {
   return SizedBox(
     height: height(context) * 0.1,
     child: AspectRatio(
@@ -17,9 +20,10 @@ Widget textFieldOTP(
           if (value.length == 1 && last == false) {
             FocusScope.of(context).nextFocus();
           }
-          if (value.length == 0 && first == false) {
+          if (value.isEmpty && first == false) {
             FocusScope.of(context).previousFocus();
           }
+          provider.isFourOtp();
         },
         showCursor: false,
         readOnly: false,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
 import 'package:taskiuser/Widgets/Otp_Field.dart';
 import '../Components/Buttons.dart';
+import '../Components/FlushBar.dart';
 import '../values/values.dart';
 
 class OtpScreen extends StatelessWidget {
@@ -70,36 +72,69 @@ class OtpScreen extends StatelessWidget {
                         first: true,
                         last: false,
                         context: context,
-                        controller: provider.otpcontroller1),
+                        controller: provider.otpcontroller1,
+                        provider: provider),
                     textFieldOTP(
                         first: false,
                         last: false,
                         context: context,
-                        controller: provider.otpcontroller2),
+                        controller: provider.otpcontroller2,
+                        provider: provider),
                     textFieldOTP(
                         first: false,
                         last: false,
                         context: context,
-                        controller: provider.otpcontroller3),
+                        controller: provider.otpcontroller3,
+                        provider: provider),
                     textFieldOTP(
                         first: false,
                         last: true,
                         context: context,
-                        controller: provider.otpcontroller4),
+                        controller: provider.otpcontroller4,
+                        provider: provider),
                   ],
                 ),
                 SizedBox(
                   height: height(context) * 0.03,
                 ),
-                customButton(
-                  context,
-                  "Login",
-                  () {
-                    HapticFeedback.lightImpact();
-                    provider.otpVerification();
+                GestureDetector(
+                  onTap: () {
+                    if(provider.haveOTP == false){
+                      HapticFeedback.lightImpact();
+                    CustomFlushBar.customFlushBar(
+                        context, "Error", "Enter a Valid OTP");
+                    }
+                    if (provider.isOTP1 == true &&
+                        provider.isOTP2 == true &&
+                        provider.isOTP3 == true &&
+                        provider.isOTP4 == true) {
+                      HapticFeedback.lightImpact();
+                      provider.otpVerification();
+                    }
                   },
-                  8,
-                  null,
+                  child: Container(
+                    width: width(context),
+                    // margin: EdgeInsets.symmetric(horizontal: width(context) * 0.1),
+                    padding:
+                        EdgeInsets.symmetric(vertical: height(context) * 0.016),
+                    decoration: BoxDecoration(
+                      color:
+                          provider.haveOTP ? Colors.amber : AppColor.grey800,
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [],
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Login",
+                        style: GoogleFonts.inter(
+                          fontSize: 18,
+                          color:
+                              provider.haveOTP ? Colors.black : AppColor.grey,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

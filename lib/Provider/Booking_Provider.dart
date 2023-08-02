@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:taskiuser/Extensions/Date_Extension.dart';
@@ -5,7 +6,17 @@ import 'package:taskiuser/Extensions/Date_Extension.dart';
 class BookingProvider extends ChangeNotifier {
   TextEditingController cityTripFromController = TextEditingController();
   TextEditingController cityTripToController = TextEditingController();
-  var k;
+  TextEditingController airportTripFromController = TextEditingController();
+  TextEditingController airportTripToController = TextEditingController();
+  TextEditingController outStationTripFromController = TextEditingController();
+  TextEditingController outStationTripToController = TextEditingController();
+  TextEditingController rentalTripFromController = TextEditingController();
+  TextEditingController rentalTripToController = TextEditingController();
+  String cityTemp = "";
+  String airportTemp = "";
+  String outstaionTemp = "";
+  String rentalTemp = "";
+
   bool a = false;
   String cityOneWayDate = "";
   String cityReturnDate = "";
@@ -32,10 +43,28 @@ class BookingProvider extends ChangeNotifier {
   bool ratingCheckBoxValue3 = false;
   bool ratingCheckBoxValue4 = false;
 
-  void swap() {
-    k = cityTripFromController.text;
-    cityTripToController.text = cityTripFromController.text;
-    cityTripToController.text = k;
+  void cityTripInputSwap() {
+    cityTemp = cityTripFromController.text;
+    cityTripFromController.text = cityTripToController.text;
+    cityTripToController.text = cityTemp;
+  }
+
+   void airportTripInputSwap() {
+    airportTemp = airportTripFromController.text;
+    airportTripFromController.text = airportTripToController.text;
+    airportTripToController.text = airportTemp;
+  }
+
+   void outStationTripInputSwap() {
+    outstaionTemp = outStationTripFromController.text;
+    outStationTripFromController.text = outStationTripToController.text;
+    outStationTripToController.text = outstaionTemp;
+  }
+
+   void rentalTripInputSwap() {
+    rentalTemp = rentalTripFromController.text;
+    rentalTripFromController.text = rentalTripToController.text;
+    rentalTripToController.text = rentalTemp;
   }
 
   void selectedCityCab(int index) {
@@ -139,7 +168,9 @@ class BookingProvider extends ChangeNotifier {
   changeScreenback() {
     a = false;
     notifyListeners();
-    print("hehehe");
+    if (kDebugMode) {
+      print("hehehe");
+    }
   }
 
   starRatingData(double value) {

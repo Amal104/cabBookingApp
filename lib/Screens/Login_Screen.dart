@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
+import 'package:taskiuser/Components/FlushBar.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
 import '../Components/Buttons.dart';
 import '../values/values.dart';
@@ -18,8 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    final version = Provider.of<LoginProvider>(context, listen: false);
-    version.fetchVersion();
+    // final version = Provider.of<LoginProvider>(context, listen: false);
+    // version.fetchVersion(context);
   }
 
   @override
@@ -68,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     showCountryFlag: false,
                     initialCountryCode: "IN",
                     onChanged: (value) {
+                      provider.isTenNumber();
                       provider.countryCode = value.countryCode;
                     },
                     decoration: const InputDecoration(
@@ -110,15 +113,40 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: height(context) * 0.03,
                 ),
-                customButton(
-                  context,
-                  "Get OTP",
-                  () {
-                    HapticFeedback.lightImpact();
-                    provider.genarateOTP();
+                GestureDetector(
+                  onTap: () {
+                    if(provider.isTenNum == false) {
+                      HapticFeedback.lightImpact();
+                      CustomFlushBar.customFlushBar(context, "Error", "Enter a Valid mobile number");
+                    }
+                    if (provider.isTenNum) {
+                      HapticFeedback.lightImpact();
+                      provider.genarateOTP(context);
+                    }
                   },
-                  8,
-                  null,
+                  child: Container(
+                    width: width(context),
+                    // margin: EdgeInsets.symmetric(horizontal: width(context) * 0.1),
+                    padding:
+                        EdgeInsets.symmetric(vertical: height(context) * 0.016),
+                    decoration: BoxDecoration(
+                      color:
+                          provider.isTenNum ? Colors.amber : AppColor.grey800,
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [],
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Get OTP",
+                        style: GoogleFonts.inter(
+                          fontSize: 18,
+                          color:
+                              provider.isTenNum ? Colors.black : AppColor.grey,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
