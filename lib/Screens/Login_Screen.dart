@@ -97,6 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: AppColor.white,
                       ),
                       searchFieldInputDecoration: const InputDecoration(
+                        filled: true,
+                        fillColor: AppColor.secondaryShade,
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
@@ -133,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color:
                           provider.isTenNum ? Colors.amber : AppColor.grey800,
                       borderRadius: BorderRadius.circular(8),
-                      boxShadow: [],
+                      boxShadow: const [],
                     ),
                     child: Center(
                       child: Text(

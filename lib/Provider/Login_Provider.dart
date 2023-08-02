@@ -122,6 +122,7 @@ class LoginProvider extends ChangeNotifier {
         if (kDebugMode) {
           print(response.statusMessage);
         }
+        CustomFlushBar.customFlushBar(context, "OTP", "Send successfully");
         Get.off(
           () => const OtpScreen(),
           transition: Transition.rightToLeft,
