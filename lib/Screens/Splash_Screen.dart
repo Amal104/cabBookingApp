@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   tokencheck() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString("userkey");
+    final token = prefs.getString("token");
     if (token != null) {
       Timer(const Duration(seconds: 4), (() {
         Get.off(

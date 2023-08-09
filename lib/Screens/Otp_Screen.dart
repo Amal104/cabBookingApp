@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
 import 'package:taskiuser/Widgets/Otp_Field.dart';
@@ -13,6 +14,20 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var defaultPinTheme = PinTheme(
+      width: 60,
+      height: 60,
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      textStyle: const TextStyle(
+        fontSize: 22,
+        color: AppColor.white,
+      ),
+      decoration: BoxDecoration(
+        color: AppColor.secondaryShade,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: AppColor.grey700, width: 3),
+      ),
+    );
     return Scaffold(
       body: Consumer<LoginProvider>(
         builder: (context, provider, child) => SafeArea(
@@ -63,54 +78,81 @@ class OtpScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: height(context) * 0.03,
+                  height: height(context) * 0.02,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    textFieldOTP(
-                        first: true,
-                        last: false,
-                        context: context,
-                        controller: provider.otpcontroller1,
-                        provider: provider),
-                    textFieldOTP(
-                        first: false,
-                        last: false,
-                        context: context,
-                        controller: provider.otpcontroller2,
-                        provider: provider),
-                    textFieldOTP(
-                        first: false,
-                        last: false,
-                        context: context,
-                        controller: provider.otpcontroller3,
-                        provider: provider),
-                    textFieldOTP(
-                        first: false,
-                        last: true,
-                        context: context,
-                        controller: provider.otpcontroller4,
-                        provider: provider),
-                  ],
+                // PinCodeTextField(
+                //   appContext: context,
+                //   length: 4,
+                //   obscureText: false,
+                //   animationType: AnimationType.fade,
+                //   pinTheme: PinTheme(
+                //     shape: PinCodeFieldShape.box,
+                //     borderRadius: BorderRadius.circular(8),
+                //     fieldHeight: 60,
+                //     fieldWidth: 60,
+                //     activeColor: AppColor.primary,
+                //     selectedColor: AppColor.white,
+                //     inactiveColor: AppColor.secondaryShade,
+                //     fieldOuterPadding: EdgeInsets.symmetric(horizontal: 10)
+                //   ),
+                //   animationDuration: Duration(milliseconds: 300),
+                //   textStyle: const TextStyle(color: AppColor.white,fontSize: 25),
+                //   controller: provider.otpcontroller,
+                //   onCompleted: (v) {
+                //     print("Completed");
+                //     // print(v);
+                //     print("controller : ${provider.otpcontroller.text}");
+                //   },
+                //   onChanged: (value) {
+                //     provider.isFourOtp();
+                //   },
+                //   beforeTextPaste: (text) {
+                //     print("Allowing to paste $text");
+                //     //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                //     //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                //     return true;
+                //   },
+                // ),
+                SizedBox(
+                  height: height(context)*0.1,
+                  child: Pinput(
+                    controller: provider.otpcontroller,
+                    androidSmsAutofillMethod:
+                        AndroidSmsAutofillMethod.smsUserConsentApi,
+                        autofillHints: const  [
+                          AutofillHints.oneTimeCode
+                        ],
+                    focusNode: provider.focusNode,
+                    closeKeyboardWhenCompleted: true,
+                    defaultPinTheme: defaultPinTheme,
+                    onChanged: (value) => provider.isFourOtp(),
+                    focusedPinTheme: defaultPinTheme.copyWith(
+                      height: 65,
+                      width: 65,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: AppColor.primary, width: 3),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
-                  height: height(context) * 0.03,
+                  height: height(context) * 0.02,
                 ),
                 GestureDetector(
                   onTap: () {
-                    if(provider.haveOTP == false){
+                    if (provider.haveOTP == false) {
+                      print("object");
                       HapticFeedback.lightImpact();
-                    CustomFlushBar.customFlushBar(
-                        context, "Error", "Enter a Valid OTP");
+                      CustomFlushBar.customFlushBar(
+                          context, "Error", "Enter a valid otp");
                     }
-                    if (provider.isOTP1 == true &&
-                        provider.isOTP2 == true &&
-                        provider.isOTP3 == true &&
-                        provider.isOTP4 == true) {
+                    if (provider.haveOTP == true) {
+                      print("object1");
                       HapticFeedback.lightImpact();
-                      provider.otpVerification();
+                      provider.otpVerification(context);
                     }
+                    print("ontap");
                   },
                   child: Container(
                     width: width(context),
@@ -118,8 +160,7 @@ class OtpScreen extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(vertical: height(context) * 0.016),
                     decoration: BoxDecoration(
-                      color:
-                          provider.haveOTP ? Colors.amber : AppColor.grey800,
+                      color: provider.haveOTP ? Colors.amber : AppColor.grey800,
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: [],
                     ),

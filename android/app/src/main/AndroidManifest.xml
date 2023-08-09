@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.taskiuser">
+    package="com.example.taskiuser" xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <queries>
         <!-- If your app opens https URLs -->
         <intent>
@@ -25,7 +27,8 @@
    <application
         android:label="taskiuser"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true" tools:targetApi="28">
         <activity
             android:name=".MainActivity"
             android:exported="true"

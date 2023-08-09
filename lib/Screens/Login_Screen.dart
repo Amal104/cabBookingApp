@@ -69,6 +69,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: provider.phonecontroller,
                     showCountryFlag: false,
                     initialCountryCode: "IN",
+                    onCountryChanged: (value) {
+                      
+                    },
                     onChanged: (value) {
                       provider.isTenNumber();
                       provider.countryCode = value.countryCode;
@@ -119,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     if(provider.isTenNum == false) {
                       HapticFeedback.lightImpact();
-                      CustomFlushBar.customFlushBar(context, "Error", "Enter a Valid mobile number");
+                      CustomFlushBar.customFlushBar(context, "Error", "Enter a valid mobile number");
                     }
                     if (provider.isTenNum) {
                       HapticFeedback.lightImpact();

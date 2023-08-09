@@ -24,22 +24,17 @@ class LoginProvider extends ChangeNotifier {
   VersionCheckModel? version;
   final Dio _dio = Dio();
 
-  String? device;
-  String? model;
-  String? brand;
+  String device = "";
+  String model = "";
+  String brand = "";
+  String os = "";
 
   TextEditingController phonecontroller = TextEditingController();
   String countryCode = "";
   String? currentVersion;
-  TextEditingController otpcontroller1 = TextEditingController();
-  TextEditingController otpcontroller2 = TextEditingController();
-  TextEditingController otpcontroller3 = TextEditingController();
-  TextEditingController otpcontroller4 = TextEditingController();
+  TextEditingController otpcontroller = TextEditingController();
+  var focusNode = FocusNode();
   bool isTenNum = false;
-  bool isOTP1 = false;
-  bool isOTP2 = false;
-  bool isOTP3 = false;
-  bool isOTP4 = false;
   bool haveOTP = false;
 
   isTenNumber() {
@@ -53,27 +48,10 @@ class LoginProvider extends ChangeNotifier {
   }
 
   isFourOtp() {
-    if (otpcontroller1.text.isNotEmpty) {
-      isOTP1 = true;
-      notifyListeners();
-    }
-    if (otpcontroller2.text.isNotEmpty) {
-      isOTP2 = true;
-      notifyListeners();
-    }
-    if (otpcontroller3.text.isNotEmpty) {
-      isOTP3 = true;
-      notifyListeners();
-    }
-    if (otpcontroller4.text.isNotEmpty) {
-      isOTP4 = true;
+    if (otpcontroller.text.length == 4) {
       haveOTP = true;
       notifyListeners();
     } else {
-      isOTP1 = false;
-      isOTP2 = true;
-      isOTP3 = true;
-      isOTP4 = true;
       haveOTP = false;
       notifyListeners();
     }
@@ -106,7 +84,7 @@ class LoginProvider extends ChangeNotifier {
         print(ApiLinks.baseURL + ApiLinks.otpGenarate);
       }
       final response = await _dio.post(
-        "http://192.168.29.108:2021/" + ApiLinks.otpGenarate,
+        "${ApiLinks.baseURL}${ApiLinks.otpGenarate}",
         data: {
           'mobile': phonecontroller.text,
           'code': countryCode,
@@ -116,57 +94,64 @@ class LoginProvider extends ChangeNotifier {
         ),
       );
       if (response.statusCode == 200) {
+        print(response);
         if (kDebugMode) {
           print(countryCode + phonecontroller.text);
         }
-        if (kDebugMode) {
-          print(response.statusMessage);
-        }
-        CustomFlushBar.customFlushBar(context, "OTP", "Send successfully");
         Get.off(
           () => const OtpScreen(),
           transition: Transition.rightToLeft,
         );
+        Future.delayed(const Duration(seconds: 3));
+        CustomFlushBar.customFlushBar(context, "OTP", response.toString());
       } else {
-        var status = response.statusMessage;
-        CustomFlushBar.customFlushBar(context, "Error", status!);
+        if (kDebugMode) {
+          print(response);
+        }
+        CustomFlushBar.customFlushBar(context, "Error", response.toString());
       }
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<void> otpVerification() async {
+  Future<void> otpVerification(BuildContext context) async {
     var deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
       var androidInfo = await deviceInfo.androidInfo;
-      device = androidInfo.device;
+      os = "Android";
+      device = androidInfo.product;
       model = androidInfo.model;
       brand = androidInfo.brand;
     } else if (Platform.isIOS) {
       var iosInfo = await deviceInfo.iosInfo;
+      os = "IOS";
       device = iosInfo.name;
       model = iosInfo.model;
       brand = iosInfo.systemName;
     }
+    if (kDebugMode) {
+      print(device);
+      print(model);
+      print(brand);
+    }
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String currentVersion = packageInfo.version;
-    String otp = otpcontroller1.text +
-        otpcontroller2.text +
-        otpcontroller3.text +
-        otpcontroller4.text;
+    String otp = otpcontroller.text;
     try {
+      print("hehe");
       final response = await _dio.post(
-        ApiLinks.baseURL + ApiLinks.otpVerification,
+        "${ApiLinks.baseURL}${ApiLinks.otpVerification}",
         data: {
           'mobile': phonecontroller.text,
           'code': countryCode,
           "otp": otp,
           "device": {
-            brand,
-            device,
-            model,
+            "os": os,
+            "model": model,
+            "device": device,
+            "brand": brand,
           }
         },
         options: Options(
@@ -179,26 +164,30 @@ class LoginProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         final data = SuccessMessage.fromJson(response.data);
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString("userkey", data.user);
+        prefs.setString("token", data.user);
         if (kDebugMode) {
-          print(data.response);
+          print(response);
         }
         if (data.isExist == true) {
           Get.off(
             () => const HomePage(),
             transition: Transition.rightToLeft,
           );
+          Future.delayed(const Duration(seconds: 3));
+          CustomFlushBar.customFlushBar(context, "Login", "Successful!!");
         } else {
           Get.off(
             () => const ProfileScreen(),
             transition: Transition.rightToLeft,
           );
+          Future.delayed(const Duration(seconds: 3));
+          CustomFlushBar.customFlushBar(context, "Login", "Successful!!");
         }
       } else {
-        final error = ErrorMessage.fromJson(response.data);
         if (kDebugMode) {
-          print(error.message);
+          print(response);
         }
+        CustomFlushBar.customFlushBar(context, "Error", response.toString());
       }
     } catch (e) {
       rethrow;
@@ -207,7 +196,9 @@ class LoginProvider extends ChangeNotifier {
 
   logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove("userkey");
+    prefs.remove("token");
+    phonecontroller.clear();
+    otpcontroller.clear();
     Get.off(
       () => const LoginScreen(),
       transition: Transition.rightToLeft,
