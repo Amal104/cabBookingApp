@@ -27,7 +27,7 @@ class LoginProvider extends ChangeNotifier {
   String device = "";
   String model = "";
   String brand = "";
-  String os = "";
+  int os = 0;
 
   TextEditingController phonecontroller = TextEditingController();
   String countryCode = "";
@@ -65,7 +65,7 @@ class LoginProvider extends ChangeNotifier {
       final response = await _dio.get(
         ApiLinks.baseURL + ApiLinks.versionCheck,
         options: Options(
-          headers: {'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A'},
+          headers: {'key': ApiLinks.key},
         ),
       );
       if (response.statusCode == 200) {
@@ -90,7 +90,7 @@ class LoginProvider extends ChangeNotifier {
           'code': countryCode,
         },
         options: Options(
-          headers: {'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A'},
+          headers: {'key': ApiLinks.key},
         ),
       );
       if (response.statusCode == 200) {
@@ -119,13 +119,13 @@ class LoginProvider extends ChangeNotifier {
     var deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
       var androidInfo = await deviceInfo.androidInfo;
-      os = "Android";
+      os = 1;
       device = androidInfo.product;
       model = androidInfo.model;
       brand = androidInfo.brand;
     } else if (Platform.isIOS) {
       var iosInfo = await deviceInfo.iosInfo;
-      os = "IOS";
+      os = 2;
       device = iosInfo.name;
       model = iosInfo.model;
       brand = iosInfo.systemName;
@@ -139,8 +139,9 @@ class LoginProvider extends ChangeNotifier {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String currentVersion = packageInfo.version;
     String otp = otpcontroller.text;
+    print(phonecontroller.text);
+    print(countryCode);
     try {
-      print("hehe");
       final response = await _dio.post(
         "${ApiLinks.baseURL}${ApiLinks.otpVerification}",
         data: {
@@ -156,15 +157,16 @@ class LoginProvider extends ChangeNotifier {
         },
         options: Options(
           headers: {
-            'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A',
+            'key': ApiLinks.key,
             'version': currentVersion
           },
         ),
       );
       if (response.statusCode == 200) {
+        final res = response.data;
         final data = SuccessMessage.fromJson(response.data);
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString("token", data.user);
+        prefs.setString("token", res["user"]);
         if (kDebugMode) {
           print(response);
         }

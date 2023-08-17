@@ -26,7 +26,7 @@ class RatingScreen extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.only(top: height(context)*0.08),
+                padding: EdgeInsets.only(top: height(context) * 0.08),
                 child: SizedBox(
                   height: height(context),
                   width: width(context),
@@ -37,15 +37,15 @@ class RatingScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: height(context)*0.075,
-                right: width(context)*0.05,
+                top: height(context) * 0.075,
+                right: width(context) * 0.05,
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    height: height(context)*0.05,
-                    width: width(context)*0.1,
+                    height: height(context) * 0.05,
+                    width: width(context) * 0.1,
                     decoration: const BoxDecoration(
                         color: AppColor.black, shape: BoxShape.circle),
                     child: const Center(
@@ -186,10 +186,10 @@ class RatingScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: width(context) * 0.15),
-                      child: customButton(
-                        context,
-                        "Rate Your Trip",
-                        () {
+                      child: CustomButton(
+                        context: context,
+                        text: "Rate Your Trip",
+                        function: () {
                           HapticFeedback.lightImpact();
                           Navigator.of(context).pop();
                           CustomFlushBar.customFlushBar(
@@ -198,8 +198,8 @@ class RatingScreen extends StatelessWidget {
                             "Thank you for your rating",
                           );
                         },
-                        5,
-                        const [
+                        radius: 5,
+                        boxshadow: const [
                           BoxShadow(
                             color: AppColor.black,
                             spreadRadius: 1,
@@ -211,7 +211,7 @@ class RatingScreen extends StatelessWidget {
                             spreadRadius: 1,
                             blurRadius: 8,
                             offset: Offset(4, 4),
-                          )
+                          ),
                         ],
                       ),
                     ),

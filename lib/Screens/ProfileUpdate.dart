@@ -136,7 +136,14 @@ class ProfileUpdate extends StatelessWidget {
             SizedBox(
               height: height(context) * 0.03,
             ),
-            customButton(context, "UPDATE", () {HapticFeedback.lightImpact();}, 25,null)
+            CustomButton(
+              context: context,
+              text: "UPDATE",
+              function: () {
+                HapticFeedback.lightImpact();
+              },
+              radius: 25,
+            ),
           ],
         ),
       ),

@@ -2,11 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../values/values.dart';
 
-class CustomTextField {
-  static Widget customBorderTextField(
-          String? hint, TextEditingController? controller, String? label) =>
-      TextField(
-        controller: controller,
+class CustomTextField extends StatelessWidget {
+  const CustomTextField(
+      {super.key, this.hint, this.controller, this.label, this.initialValue});
+
+  final String? hint;
+  final TextEditingController? controller;
+  final String? label;
+  final String? initialValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+       onChanged: (value) {
+          controller!.text = value;
+          print(controller!.text);
+        },
+        initialValue: initialValue,
+        // controller: controller,
         decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
@@ -39,5 +52,6 @@ class CustomTextField {
         style: GoogleFonts.inter(
           color: AppColor.white,
         ),
-      );
+    );
+  }
 }

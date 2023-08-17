@@ -1,35 +1,66 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:taskiuser/Models/Profile_Model.dart';
+
+import '../Constants.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  TextEditingController nameControler = TextEditingController(text: "Amal K A");
-  TextEditingController emailControler = TextEditingController(text: "amalka@taski.in");
-  TextEditingController employeeIdControler = TextEditingController(text: "taski172");
-  TextEditingController designationControler = TextEditingController(text: "Flutter Developer");
-  TextEditingController managerNameControler = TextEditingController(text: "Dev Akash");
-  TextEditingController managerMobileControler = TextEditingController(text: "9747451474");
-  TextEditingController managerEmailControler = TextEditingController(text: "akash@taski.in");
+  ProfileModel? profile;
+  TextEditingController nameControler = TextEditingController();
+  TextEditingController emailControler =
+      TextEditingController();
+  TextEditingController employeeIdControler =
+      TextEditingController();
+  TextEditingController designationControler =
+      TextEditingController();
+  TextEditingController managerNameControler =
+      TextEditingController();
+  TextEditingController managerMobileControler =
+      TextEditingController();
+  TextEditingController managerEmailControler =
+      TextEditingController();
 
-  List<String> dropDownListSelectBranch = [
-    "Select Branch",
-    "Kochi",
-    "Bangalore"
-  ];
-  List<String> dropDownListSelectDept = [
-    "Select Department",
-    "Test",
-    "Develop"
-  ];
-
-  String dropDownListSelectBranchValue = "Select Branch";
-  String dropDownListSelectDeptValue = "Select Department";
+  var dropDownListSelectBranchValue;
+  var dropDownListSelectDeptValue;
 
   onchangedBranch(String? value) {
     dropDownListSelectBranchValue = value!;
+    print(dropDownListSelectBranchValue);
     notifyListeners();
   }
 
   onchangedDept(String? value) {
     dropDownListSelectDeptValue = value!;
+    print(dropDownListSelectDeptValue);
     notifyListeners();
+  }
+
+  Future<ProfileModel?> getProfileData(BuildContext context) async {
+    Dio _dio = Dio();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    print(prefs.getString("token"));
+    try {
+      final response = await _dio.get(
+        "http://192.168.29.9:2021/login/android/user/v2/profile",
+        options: Options(
+          headers: {
+            'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A',
+            'token': prefs.getString("token")
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        profile = ProfileModel.fromJson(response.data);
+        if (kDebugMode) {
+          print(response);
+        }
+      }
+    } catch (e) {
+      rethrow;
+    }
+    return null;
+    // return null;
   }
 }
