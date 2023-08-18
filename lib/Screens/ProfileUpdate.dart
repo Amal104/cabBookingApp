@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:provider/provider.dart';
 import 'package:taskiuser/Components/Buttons.dart';
+import 'package:taskiuser/Provider/Profile_Provider.dart';
 import '../Components/AppBar.dart';
 import '../values/values.dart';
 import '../Widgets/PageTitle.dart';
@@ -14,12 +16,15 @@ class ProfileUpdate extends StatelessWidget {
       required this.type,
       required this.title,
       required this.update,
-      required this.isMobile});
+      required this.isMobile, this.function, required this.controller, required this.provider});
 
   final String type;
   final String title;
   final String update;
   final bool isMobile;
+  final void Function()? function;
+  final TextEditingController controller;
+  final ProfileProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +74,11 @@ class ProfileUpdate extends StatelessWidget {
                     child: IntlPhoneField(
                       showCountryFlag: false,
                       initialCountryCode: "IN",
-                      onChanged: (value) {},
+                      controller: controller,
+                      onChanged: (value) {
+                        provider.profileUpdateCountryCode = value.countryCode;
+                        print(provider.profileUpdateCountryCode+provider.profilePhonecontroller.text);
+                      },
                       decoration: InputDecoration(
                         hintText: update,
                         hintStyle: GoogleFonts.inter(
@@ -115,6 +124,7 @@ class ProfileUpdate extends StatelessWidget {
                     ),
                   )
                 : TextField(
+                  controller: controller,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -138,10 +148,8 @@ class ProfileUpdate extends StatelessWidget {
             ),
             CustomButton(
               context: context,
-              text: "UPDATE",
-              function: () {
-                HapticFeedback.lightImpact();
-              },
+              text: isMobile? "Get OTP": "UPDATE",
+              function: function,
               radius: 25,
             ),
           ],

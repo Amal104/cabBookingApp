@@ -12,14 +12,23 @@ import 'package:taskiuser/Screens/Login_Screen.dart';
 import '../Constants.dart';
 
 class ProfileProvider extends ChangeNotifier {
+  Dio _dio = Dio();
   ProfileModel? profile;
   TextEditingController nameControler = TextEditingController();
   TextEditingController emailControler = TextEditingController();
+  TextEditingController updateOtpControler = TextEditingController();
+  TextEditingController profilePhonecontroller = TextEditingController();
+  bool haveOTP = false;
+  var focusNode = FocusNode();
+  String profileUpdateCountryCode = "";
   TextEditingController employeeIdControler = TextEditingController();
   TextEditingController designationControler = TextEditingController();
   TextEditingController managerNameControler = TextEditingController();
   TextEditingController managerMobileControler = TextEditingController();
   TextEditingController managerEmailControler = TextEditingController();
+  TextEditingController profileUpdateName = TextEditingController();
+  TextEditingController profileUpdateEmail = TextEditingController();
+  TextEditingController profileUpdateMobile = TextEditingController();
 
   var dropDownListSelectBranchValue;
   var dropDownListSelectDeptValue;
@@ -30,6 +39,16 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  isFourOtp() {
+    if (updateOtpControler.text.length == 4) {
+      haveOTP = true;
+      notifyListeners();
+    } else {
+      haveOTP = false;
+      notifyListeners();
+    }
+  }
+
   onchangedDept(String? value) {
     dropDownListSelectDeptValue = value!;
     print(dropDownListSelectDeptValue);
@@ -37,12 +56,16 @@ class ProfileProvider extends ChangeNotifier {
   }
 
   Future<ProfileModel?> getProfileData(BuildContext context) async {
-    Dio _dio = Dio();
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(prefs.getString("token"));
+    if (kDebugMode) {
+      print(prefs.getString("token"));
+    }
     try {
+      if (kDebugMode) {
+        print(ApiLinks.baseURL + ApiLinks.profileData);
+      }
       final response = await _dio.get(
-        "http://192.168.29.9:2021/login/android/user/v2/profile",
+        ApiLinks.baseURL + ApiLinks.profileData,
         options: Options(
           headers: {
             'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A',
@@ -52,6 +75,7 @@ class ProfileProvider extends ChangeNotifier {
       );
       if (response.statusCode == 200) {
         profile = ProfileModel.fromJson(response.data);
+        notifyListeners();
         if (kDebugMode) {
           print(response);
         }
@@ -69,5 +93,53 @@ class ProfileProvider extends ChangeNotifier {
       rethrow;
     }
     return null;
+  }
+
+  Future<void> updateProfile(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+    try {
+      if (kDebugMode) {
+        print(ApiLinks.baseURL + ApiLinks.profileUpdate);
+      }
+      Map data = {};
+      if (profileUpdateName.text != "") {
+        data["name"] = profileUpdateName.text;
+      }
+      if (profileUpdateMobile.text != "") {
+        data["mobile"] = profileUpdateCountryCode + profilePhonecontroller.text;
+      }
+      if (profileUpdateEmail.text != "") {
+        data["email"] = profileUpdateEmail.text;
+      }
+      if (kDebugMode) {
+        print(data);
+      }
+      final response = await _dio.patch(
+        ApiLinks.baseURL + ApiLinks.profileUpdate,
+        data: data,
+        options: Options(
+          headers: {'key': ApiLinks.key, 'token': token},
+        ),
+      );
+      if (response.statusCode == 200) {
+        if (kDebugMode) {
+          print(response);
+        }
+        Future.delayed(const Duration(seconds: 1));
+        CustomFlushBar.customFlushBar(context, "Update", response.toString());
+        getProfileData(context);
+        profileUpdateName.clear();
+        profileUpdateEmail.clear();
+        profileUpdateMobile.clear();
+      } else {
+        if (kDebugMode) {
+          print(response);
+        }
+        CustomFlushBar.customFlushBar(context, "Error", response.toString());
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 }

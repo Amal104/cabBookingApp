@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:taskiuser/Components/FlushBar.dart';
 import 'package:taskiuser/Models/Profile_Model.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
 import 'package:taskiuser/Provider/Profile_Provider.dart';
@@ -15,6 +16,8 @@ import 'package:taskiuser/Screens/Co-ProfileUpdate.dart';
 import 'package:taskiuser/Screens/ProfileUpdate.dart';
 import 'package:taskiuser/Screens/Profile_Signature_Screen.dart';
 import 'package:taskiuser/values/values.dart';
+
+import 'MobileUpdateOTPScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -217,7 +220,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(
                   width: width(context) * 0.8,
-                  child: ProfileData(profile: provider.profile),
+                  child: ProfileData(
+                      profile: provider.profile, provider: provider),
                 ),
               ],
             ),
@@ -232,8 +236,10 @@ class ProfileData extends StatelessWidget {
   const ProfileData({
     super.key,
     required this.profile,
+    required this.provider,
   });
   final ProfileModel? profile;
+  final ProfileProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -260,6 +266,12 @@ class ProfileData extends StatelessWidget {
           type: "Name",
           update: "Update your Name",
           isMobile: false,
+          provider: provider,
+          controller: provider.profileUpdateName,
+          function: () {
+            HapticFeedback.lightImpact();
+            provider.updateProfile(context);
+          },
         ),
         SizedBox(
           height: height(context) * 0.025,
@@ -278,12 +290,18 @@ class ProfileData extends StatelessWidget {
         SizedBox(
           height: height(context) * 0.007,
         ),
-         ProfileDataField(
+        ProfileDataField(
           data: profile?.email ?? "",
           title: "Update Email",
           type: "Email",
           update: "Update your Email",
           isMobile: false,
+          provider: provider,
+          controller: provider.profileUpdateEmail,
+          function: () {
+            HapticFeedback.lightImpact();
+            provider.updateProfile(context);
+          },
         ),
         SizedBox(
           height: height(context) * 0.025,
@@ -302,12 +320,25 @@ class ProfileData extends StatelessWidget {
         SizedBox(
           height: height(context) * 0.007,
         ),
-         ProfileDataField(
+        ProfileDataField(
           data: profile?.mobile ?? "",
           title: "Update Mobile",
           type: "Mobile",
           update: "Update your mobile number",
           isMobile: true,
+          provider: provider,
+          controller: provider.profileUpdateMobile,
+          function: () {
+            if (provider.profileUpdateMobile.text.length == 10) {
+              Get.to(
+                () => MobileUpdateOTPScreen(provider: provider),
+                transition: Transition.rightToLeft,
+              );
+            } else {
+              CustomFlushBar.customFlushBar(
+                  context, "Error", "Enter valid mobile number");
+            }
+          },
         ),
         SizedBox(
           height: height(context) * 0.025,
@@ -349,11 +380,14 @@ class ProfileData extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        profile?.corporate.image ?? "",
+                    if (profile?.corporate.image != null)
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundImage: NetworkImage(
+                          profile?.corporate.image ?? "",
+                          scale: 20,
+                        ),
                       ),
-                    ),
                     SizedBox(
                       width: width(context) * 0.03,
                     ),
@@ -379,43 +413,43 @@ class ProfileData extends StatelessWidget {
         SizedBox(
           height: height(context) * 0.025,
         ),
-        if(profile?.isSignatureRequired ?? false)
-        GestureDetector(
-          onTap: () {
-            HapticFeedback.mediumImpact();
-            Get.to(
-              () => const SignatureScreen(),
-              transition: Transition.rightToLeft,
-            );
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: width(context) * 0.05),
-            height: height(context) * 0.065,
-            width: width(context) * 0.8,
-            decoration: BoxDecoration(
-              color: AppColor.secondaryShade,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Signature",
-                  style: GoogleFonts.inter(
-                    color: AppColor.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
+        if (profile?.isSignatureRequired ?? false)
+          GestureDetector(
+            onTap: () {
+              HapticFeedback.mediumImpact();
+              Get.to(
+                () => const SignatureScreen(),
+                transition: Transition.rightToLeft,
+              );
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: width(context) * 0.05),
+              height: height(context) * 0.065,
+              width: width(context) * 0.8,
+              decoration: BoxDecoration(
+                color: AppColor.secondaryShade,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Signature",
+                    style: GoogleFonts.inter(
+                      color: AppColor.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                    ),
                   ),
-                ),
-                const FaIcon(
-                  FontAwesomeIcons.chevronRight,
-                  color: AppColor.primary,
-                  size: 20,
-                )
-              ],
+                  const FaIcon(
+                    FontAwesomeIcons.chevronRight,
+                    color: AppColor.primary,
+                    size: 20,
+                  )
+                ],
+              ),
             ),
           ),
-        ),
       ],
     );
   }
@@ -429,6 +463,8 @@ class ProfileDataField extends StatelessWidget {
     required this.type,
     required this.update,
     required this.isMobile,
+    this.function,
+    required this.controller, required this.provider,
   });
 
   final String data;
@@ -436,6 +472,9 @@ class ProfileDataField extends StatelessWidget {
   final String type;
   final String update;
   final bool isMobile;
+  final void Function()? function;
+  final TextEditingController controller;
+  final ProfileProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -448,6 +487,9 @@ class ProfileDataField extends StatelessWidget {
             type: type,
             update: update,
             isMobile: isMobile,
+            function: function,
+            controller: controller,
+            provider: provider,
           ),
           transition: Transition.rightToLeft,
         );
