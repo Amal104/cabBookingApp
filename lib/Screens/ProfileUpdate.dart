@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,14 +17,19 @@ class ProfileUpdate extends StatelessWidget {
       required this.type,
       required this.title,
       required this.update,
-      required this.isMobile, this.function, required this.controller, required this.provider});
+      required this.isMobile,
+      this.function,
+      required this.controller,
+      required this.provider,
+      this.phoneController});
 
   final String type;
   final String title;
   final String update;
   final bool isMobile;
   final void Function()? function;
-  final TextEditingController controller;
+  final TextEditingController? controller;
+  final TextEditingController? phoneController;
   final ProfileProvider provider;
 
   @override
@@ -74,10 +80,13 @@ class ProfileUpdate extends StatelessWidget {
                     child: IntlPhoneField(
                       showCountryFlag: false,
                       initialCountryCode: "IN",
-                      controller: controller,
+                      controller: phoneController,
                       onChanged: (value) {
                         provider.profileUpdateCountryCode = value.countryCode;
-                        print(provider.profileUpdateCountryCode+provider.profilePhonecontroller.text);
+                        if (kDebugMode) {
+                          print(provider.profileUpdateCountryCode +
+                              provider.profileUpdateMobile.text);
+                        }
                       },
                       decoration: InputDecoration(
                         hintText: update,
@@ -124,7 +133,7 @@ class ProfileUpdate extends StatelessWidget {
                     ),
                   )
                 : TextField(
-                  controller: controller,
+                    controller: controller,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -148,7 +157,7 @@ class ProfileUpdate extends StatelessWidget {
             ),
             CustomButton(
               context: context,
-              text: isMobile? "Get OTP": "UPDATE",
+              text: isMobile ? "Get OTP" : "UPDATE",
               function: function,
               radius: 25,
             ),

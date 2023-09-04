@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -327,9 +328,15 @@ class ProfileData extends StatelessWidget {
           update: "Update your mobile number",
           isMobile: true,
           provider: provider,
-          controller: provider.profileUpdateMobile,
+          controller: null,
+          phoneController: provider.profileUpdateMobile,
           function: () {
             if (provider.profileUpdateMobile.text.length == 10) {
+              if (kDebugMode) {
+                print(provider.profileUpdateCountryCode +
+                  provider.profileUpdateMobile.text);
+              }
+              provider.updateProfile(context);
               Get.to(
                 () => MobileUpdateOTPScreen(provider: provider),
                 transition: Transition.rightToLeft,
@@ -464,7 +471,9 @@ class ProfileDataField extends StatelessWidget {
     required this.update,
     required this.isMobile,
     this.function,
-    required this.controller, required this.provider,
+    required this.controller,
+    required this.provider,
+    this.phoneController,
   });
 
   final String data;
@@ -473,7 +482,8 @@ class ProfileDataField extends StatelessWidget {
   final String update;
   final bool isMobile;
   final void Function()? function;
-  final TextEditingController controller;
+  final TextEditingController? controller;
+  final TextEditingController? phoneController;
   final ProfileProvider provider;
 
   @override
@@ -489,6 +499,7 @@ class ProfileDataField extends StatelessWidget {
             isMobile: isMobile,
             function: function,
             controller: controller,
+            phoneController: phoneController,
             provider: provider,
           ),
           transition: Transition.rightToLeft,

@@ -107,10 +107,14 @@ class ProfileProvider extends ChangeNotifier {
         data["name"] = profileUpdateName.text;
       }
       if (profileUpdateMobile.text != "") {
-        data["mobile"] = profileUpdateCountryCode + profilePhonecontroller.text;
+        data["mobile"] = profileUpdateMobile.text;
       }
       if (profileUpdateEmail.text != "") {
         data["email"] = profileUpdateEmail.text;
+      }
+      if (updateOtpControler.text != "") {
+        data["otp"] = updateOtpControler.text;
+        data["mobile"] = profileUpdateMobile.text;
       }
       if (kDebugMode) {
         print(data);
@@ -127,18 +131,27 @@ class ProfileProvider extends ChangeNotifier {
           print(response);
         }
         Future.delayed(const Duration(seconds: 1));
+        if(context.mounted) return;
         CustomFlushBar.customFlushBar(context, "Update", response.toString());
         getProfileData(context);
         profileUpdateName.clear();
         profileUpdateEmail.clear();
-        profileUpdateMobile.clear();
-      } else {
-        if (kDebugMode) {
-          print(response);
+        if (updateOtpControler.text != "") {
+          profileUpdateMobile.clear();
+          updateOtpControler.clear();
         }
-        CustomFlushBar.customFlushBar(context, "Error", response.toString());
       }
     } catch (e) {
+      profileUpdateName.clear();
+      profileUpdateEmail.clear();
+      if (updateOtpControler.text != "") {
+        profileUpdateMobile.clear();
+        updateOtpControler.clear();
+      }
+      if (e is DioException) {
+        CustomFlushBar.customFlushBar(context, "Error", e.response.toString());
+      }
+      dispose();
       rethrow;
     }
   }

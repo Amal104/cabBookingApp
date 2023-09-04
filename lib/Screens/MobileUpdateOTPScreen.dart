@@ -109,6 +109,7 @@ class MobileUpdateOTPScreen extends StatelessWidget {
               onTap: () {
                 HapticFeedback.lightImpact();
                 provider.updateProfile(context);
+                Navigator.of(context).pop();
               },
               child: Container(
                 width: width(context),
