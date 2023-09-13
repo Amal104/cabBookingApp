@@ -6,23 +6,10 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 import 'package:taskiuser/Components/FlushBar.dart';
 import 'package:taskiuser/Provider/Login_Provider.dart';
-import '../Components/Buttons.dart';
 import '../values/values.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  @override
-  void initState() {
-    super.initState();
-    // final version = Provider.of<LoginProvider>(context, listen: false);
-    // version.fetchVersion(context);
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,18 +1,20 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/exceptions/exceptions.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:signature/signature.dart';
 import 'package:taskiuser/Components/FlushBar.dart';
 import 'package:taskiuser/Models/Profile_Model.dart';
 import 'package:taskiuser/Screens/Login_Screen.dart';
-
+import 'package:taskiuser/values/values.dart';
 import '../Constants.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  Dio _dio = Dio();
+  final Dio _dio = Dio();
   ProfileModel? profile;
   TextEditingController nameControler = TextEditingController();
   TextEditingController emailControler = TextEditingController();
@@ -29,6 +31,8 @@ class ProfileProvider extends ChangeNotifier {
   TextEditingController profileUpdateName = TextEditingController();
   TextEditingController profileUpdateEmail = TextEditingController();
   TextEditingController profileUpdateMobile = TextEditingController();
+  SignatureController signatureController = SignatureController();
+  Uint8List? signature;
 
   var dropDownListSelectBranchValue;
   var dropDownListSelectDeptValue;
@@ -55,6 +59,63 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future exportSignature() async {
+    final exportController = SignatureController(
+      penStrokeWidth: 2,
+      exportBackgroundColor: AppColor.white,
+      penColor: AppColor.black,
+      points: signatureController.points,
+    );
+    signature = await exportController.toPngBytes();
+    return signature;
+  }
+
+  Future signatureData(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (kDebugMode) {
+      print(prefs.getString("token"));
+    }
+    try {
+      if (kDebugMode) {
+        print(signature);
+        print(ApiLinks.baseURL + ApiLinks.profileData);
+      }
+      final response = await _dio.patch(
+        "http://192.168.29.9:2021/login/android/user/v2/profile/signature/update",
+        data: FormData.fromMap({
+          "signature": MultipartFile.fromBytes(
+            signature!,
+            filename: "signature.png",
+            contentType: MediaType("image", "png"),
+          ),
+        }),
+        options: Options(
+          headers: {
+            'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A',
+            'token': prefs.getString("token")
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        CustomFlushBar.customFlushBar(context, "Update", response.toString());
+        if (kDebugMode) {
+          print(response);
+        }
+        signatureController.clear();
+        getProfileData(context);
+      }
+    } catch (e) {
+      if (e is DioException) {
+        if (e.response?.statusCode != 200 && e.response?.data != null) {
+          CustomFlushBar.customFlushBar(
+              context, "Update", e.response!.data.toString());
+        }
+      }
+      rethrow;
+    }
+    return null;
+  }
+
   Future<ProfileModel?> getProfileData(BuildContext context) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (kDebugMode) {
@@ -65,7 +126,7 @@ class ProfileProvider extends ChangeNotifier {
         print(ApiLinks.baseURL + ApiLinks.profileData);
       }
       final response = await _dio.get(
-        ApiLinks.baseURL + ApiLinks.profileData,
+        "http://192.168.29.9:2021/login/android/user/v2/profile",
         options: Options(
           headers: {
             'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A',
@@ -131,7 +192,6 @@ class ProfileProvider extends ChangeNotifier {
           print(response);
         }
         Future.delayed(const Duration(seconds: 1));
-        if(context.mounted) return;
         CustomFlushBar.customFlushBar(context, "Update", response.toString());
         getProfileData(context);
         profileUpdateName.clear();
@@ -151,7 +211,6 @@ class ProfileProvider extends ChangeNotifier {
       if (e is DioException) {
         CustomFlushBar.customFlushBar(context, "Error", e.response.toString());
       }
-      dispose();
       rethrow;
     }
   }

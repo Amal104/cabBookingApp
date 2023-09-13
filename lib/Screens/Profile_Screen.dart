@@ -16,6 +16,7 @@ import 'package:taskiuser/Screens/Home_Screen.dart';
 import 'package:taskiuser/Screens/Co-ProfileUpdate.dart';
 import 'package:taskiuser/Screens/ProfileUpdate.dart';
 import 'package:taskiuser/Screens/Profile_Signature_Screen.dart';
+import 'package:taskiuser/Screens/SignatureScreen.dart';
 import 'package:taskiuser/values/values.dart';
 
 import 'MobileUpdateOTPScreen.dart';
@@ -334,7 +335,7 @@ class ProfileData extends StatelessWidget {
             if (provider.profileUpdateMobile.text.length == 10) {
               if (kDebugMode) {
                 print(provider.profileUpdateCountryCode +
-                  provider.profileUpdateMobile.text);
+                    provider.profileUpdateMobile.text);
               }
               provider.updateProfile(context);
               Get.to(
@@ -425,7 +426,7 @@ class ProfileData extends StatelessWidget {
             onTap: () {
               HapticFeedback.mediumImpact();
               Get.to(
-                () => const SignatureScreen(),
+                () => SignatureScreen(signature: profile?.signature ?? ""),
                 transition: Transition.rightToLeft,
               );
             },

@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:taskiuser/Components/FlushBar.dart';
+import 'package:taskiuser/Provider/Profile_Provider.dart';
+import 'package:taskiuser/Screens/SignaturePreview.dart';
 import '../Components/AppBar.dart';
 import '../Widgets/PageTitle.dart';
 import '../values/values.dart';
 import 'package:signature/signature.dart';
 
-class SignatureScreen extends StatefulWidget {
-  const SignatureScreen({super.key});
+class SignatureUpdate extends StatefulWidget {
+  const SignatureUpdate({super.key});
 
   @override
-  State<SignatureScreen> createState() => _SignatureScreenState();
+  State<SignatureUpdate> createState() => _SignatureUpdateState();
 }
 
-class _SignatureScreenState extends State<SignatureScreen> {
-  SignatureController controller = SignatureController();
+class _SignatureUpdateState extends State<SignatureUpdate> {
+  ProfileProvider? provider;
   @override
   void initState() {
-    controller = SignatureController(
+    provider = Provider.of<ProfileProvider>(context, listen: false);
+    provider?.signatureController = SignatureController(
       penColor: AppColor.white,
       penStrokeWidth: 2,
     );
@@ -26,7 +32,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
 
   @override
   void dispose() {
-    controller.dispose();
+    provider?.signatureController.dispose();
     super.dispose();
   }
 
@@ -38,45 +44,48 @@ class _SignatureScreenState extends State<SignatureScreen> {
         preferredSize: Size.fromHeight(height(context) * 0.05),
         child: CustomAppbar(
           title: null,
-          leading: const PageTitle(title: "Add signature", padding: 14),
+          leading: const PageTitle(title: "Update signature", padding: 14),
           actions: null,
           color: AppColor.transparent,
           elevation: 0,
-          leadingWidth: width(context) * 0.48,
+          leadingWidth: width(context) * 0.55,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: height(context) * 0.05,
-            ),
-            Signature(
-              controller: controller,
-              backgroundColor: AppColor.black,
-              height: height(context) * 0.65,
-            ),
-            SizedBox(
-              height: height(context) * 0.06,
-            ),
-            buildButtons(context),
-          ],
+      body: Consumer<ProfileProvider>(
+        builder: (context, provider, child) => SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: height(context) * 0.05,
+              ),
+              Signature(
+                controller: provider.signatureController,
+                backgroundColor: AppColor.black,
+                height: height(context) * 0.65,
+              ),
+              SizedBox(
+                height: height(context) * 0.06,
+              ),
+              buildButtons(context, provider),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget buildButtons(BuildContext context) {
+  Widget buildButtons(BuildContext context, ProfileProvider provider) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        buildCheck(context),
-        buildClear(),
+        buildCheck(context, provider),
+        buildClear(provider),
       ],
     );
   }
 
-  Widget buildCheck(BuildContext context) => Container(
+  Widget buildCheck(BuildContext context, ProfileProvider provider) =>
+      Container(
         padding: const EdgeInsets.all(10),
         decoration: const BoxDecoration(
             color: AppColor.black,
@@ -96,8 +105,21 @@ class _SignatureScreenState extends State<SignatureScreen> {
               )
             ]),
         child: IconButton(
-          onPressed: () {
+          onPressed: () async {
             HapticFeedback.lightImpact();
+            if (provider.signatureController.isNotEmpty) {
+              provider.exportSignature();
+              provider.signature = await provider.exportSignature();
+              Get.to(() => SignaturePreview(
+                    signature: provider.signature,
+                  ));
+            } else {
+              CustomFlushBar.customFlushBar(
+                context,
+                "Error",
+                "Please sign your signature",
+              );
+            }
           },
           icon: const FaIcon(
             FontAwesomeIcons.check,
@@ -108,7 +130,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
         ),
       );
 
-  Widget buildClear() => Container(
+  Widget buildClear(ProfileProvider provider) => Container(
         padding: const EdgeInsets.all(10),
         decoration: const BoxDecoration(
           color: AppColor.black,
@@ -131,7 +153,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
         child: IconButton(
           onPressed: () {
             HapticFeedback.lightImpact();
-            controller.clear();
+            provider.signatureController.clear();
           },
           icon: const FaIcon(
             FontAwesomeIcons.xmark,

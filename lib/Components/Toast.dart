@@ -45,7 +45,7 @@ showCustomToast(BuildContext context, String message) {
       Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         decoration: BoxDecoration(
-          color: AppColor.grey,
+          color: AppColor.white,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(

@@ -36,6 +36,7 @@ class LoginProvider extends ChangeNotifier {
   var focusNode = FocusNode();
   bool isTenNum = false;
   bool haveOTP = false;
+  bool updateAvailbale = false;
 
   isTenNumber() {
     if (phonecontroller.text.length == 10) {
@@ -218,6 +219,9 @@ class LoginProvider extends ChangeNotifier {
       if (kDebugMode) {
         print(supportingVersion);
         print("redirecting to playstore......");
+        updateAvailbale = true;
+        notifyListeners();
+        print(updateAvailbale);
       }
       CustomAlertDialog.showCustomDialog(
         context,

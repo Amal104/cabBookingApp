@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:taskiuser/Provider/Login_Provider.dart';
 import 'package:taskiuser/Screens/Login_Screen.dart';
 import 'package:taskiuser/values/values.dart';
 
@@ -20,6 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    // final version = Provider.of<LoginProvider>(context, listen: false);
+    // version.fetchVersion(context);
+    // if(version.updateAvailbale == true) {
+    //   tokencheck();
+    // }
     tokencheck();
   }
 
@@ -76,7 +83,9 @@ class _SplashScreenState extends State<SplashScreen> {
                   "assets/images/LoginBubble.PNG",
                   height: height(context) * 0.15,
                 ),
-                SizedBox(width: width(context)*0.045,),
+                SizedBox(
+                  width: width(context) * 0.045,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
