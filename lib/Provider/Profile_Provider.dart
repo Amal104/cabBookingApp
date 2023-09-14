@@ -21,6 +21,7 @@ class ProfileProvider extends ChangeNotifier {
   TextEditingController updateOtpControler = TextEditingController();
   TextEditingController profilePhonecontroller = TextEditingController();
   bool haveOTP = false;
+  bool updateMobileTrue = false;
   var focusNode = FocusNode();
   String profileUpdateCountryCode = "";
   TextEditingController employeeIdControler = TextEditingController();
@@ -191,9 +192,14 @@ class ProfileProvider extends ChangeNotifier {
         if (kDebugMode) {
           print(response);
         }
+        updateMobileTrue = true;
+        notifyListeners();
         Future.delayed(const Duration(seconds: 1));
         CustomFlushBar.customFlushBar(context, "Update", response.toString());
         getProfileData(context);
+        if (kDebugMode) {
+          print(updateMobileTrue);
+        }
         profileUpdateName.clear();
         profileUpdateEmail.clear();
         if (updateOtpControler.text != "") {
@@ -202,14 +208,19 @@ class ProfileProvider extends ChangeNotifier {
         }
       }
     } catch (e) {
-      profileUpdateName.clear();
-      profileUpdateEmail.clear();
-      if (updateOtpControler.text != "") {
-        profileUpdateMobile.clear();
-        updateOtpControler.clear();
-      }
       if (e is DioException) {
-        CustomFlushBar.customFlushBar(context, "Error", e.response.toString());
+        updateMobileTrue = false;
+        notifyListeners();
+        profileUpdateName.clear();
+        profileUpdateEmail.clear();
+        if (updateOtpControler.text != "") {
+          profileUpdateMobile.clear();
+          updateOtpControler.clear();
+        }
+        if (e.response?.statusCode != 200 && e.response?.data != null) {
+          CustomFlushBar.customFlushBar(
+              context, "Update", e.response!.data.toString());
+        }
       }
       rethrow;
     }
