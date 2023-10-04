@@ -15,8 +15,23 @@ import '../Components/AppBar.dart';
 import '../values/values.dart';
 import '../Widgets/PageTitle.dart';
 
-class CoProfileUpdate extends StatelessWidget {
+class CoProfileUpdate extends StatefulWidget {
   const CoProfileUpdate({super.key});
+
+  @override
+  State<CoProfileUpdate> createState() => _CoProfileUpdateState();
+}
+
+class _CoProfileUpdateState extends State<CoProfileUpdate> {
+  @override
+  void initState() {
+    var provider = Provider.of<ProfileProvider>(context, listen: false);
+    var branchValue = provider.profile!.corporate.branch;
+    var deptValue = provider.profile!.corporate.department;
+    provider.selectedBranch(branchValue);
+    provider.selectedDept(deptValue);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +59,19 @@ class CoProfileUpdate extends StatelessWidget {
                         height: height(context) * 0.04,
                       ),
                       CustomTextField(
-                        controller: provider.nameControler,
+                        controller: provider.coNameControler,
                         hint: "Enter your name",
                         label: "Name",
-                        initialValue: coProfile?.name,
+                        initialValue: coProfile?.officialname,
                       ),
                       SizedBox(
                         height: height(context) * 0.02,
                       ),
                       CustomTextField(
-                        controller: provider.emailControler,
+                        controller: provider.coEmailControler,
                         hint: "Enter your email",
                         label: "Email",
-                        initialValue: provider.profile?.email,
+                        initialValue: coProfile?.officialemail,
                       ),
                       SizedBox(
                         height: height(context) * 0.02,
@@ -86,13 +101,13 @@ class CoProfileUpdate extends StatelessWidget {
                         child: DropdownButton(
                           value: provider.dropDownListSelectBranchValue,
                           dropdownColor: AppColor.secondaryShadev2,
-                          hint: Text(
-                            "Select Branch",
-                            style: GoogleFonts.inter(
-                              fontSize: 18,
-                              color: AppColor.white,
-                            ),
-                          ),
+                          // hint: Text(
+                          //   "Select Branch",
+                          //   style: GoogleFonts.inter(
+                          //     fontSize: 18,
+                          //     color: AppColor.white,
+                          //   ),
+                          // ),
                           icon: const FaIcon(
                             FontAwesomeIcons.chevronDown,
                             size: 12,
@@ -129,13 +144,13 @@ class CoProfileUpdate extends StatelessWidget {
                         child: DropdownButton(
                           value: provider.dropDownListSelectDeptValue,
                           dropdownColor: AppColor.secondaryShadev2,
-                          hint: Text(
-                            "Select Department",
-                            style: GoogleFonts.inter(
-                              fontSize: 18,
-                              color: AppColor.white,
-                            ),
-                          ),
+                          // hint: Text(
+                          //   "Select Department",
+                          //   style: GoogleFonts.inter(
+                          //     fontSize: 18,
+                          //     color: AppColor.white,
+                          //   ),
+                          // ),
                           icon: const FaIcon(
                             FontAwesomeIcons.chevronDown,
                             size: 12,
@@ -192,7 +207,15 @@ class CoProfileUpdate extends StatelessWidget {
                       SizedBox(
                         height: height(context) * 0.025,
                       ),
-                      CustomButton(context: context, text: "UPDATE", radius: 8),
+                      CustomButton(
+                        context: context,
+                        text: "UPDATE",
+                        radius: 8,
+                        function: () {
+                          HapticFeedback.lightImpact();
+                          provider.updateCoProfile(context);
+                        },
+                      ),
                     ],
                   )
                 : Shimmer.fromColors(
@@ -201,17 +224,15 @@ class CoProfileUpdate extends StatelessWidget {
                     child: SizedBox(
                       height: height(context),
                       child: ListView.builder(
-                        itemCount: 10,
-                        itemBuilder: (context, index) => 
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 20),
-                            width: width(context),
-                            height: height(context) * 0.05,
-                            decoration: BoxDecoration(
-                                color: AppColor.secondaryShadev2,
-                                borderRadius: BorderRadius.circular(8)),
-                          )
-                      ),
+                          itemCount: 10,
+                          itemBuilder: (context, index) => Container(
+                                margin: EdgeInsets.symmetric(vertical: 20),
+                                width: width(context),
+                                height: height(context) * 0.05,
+                                decoration: BoxDecoration(
+                                    color: AppColor.secondaryShadev2,
+                                    borderRadius: BorderRadius.circular(8)),
+                              )),
                     ));
           }),
         ),

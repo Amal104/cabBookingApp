@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final profileModel = profileModelFromJson(jsonString);
+
 import 'dart:convert';
 
 ProfileModel profileModelFromJson(String str) => ProfileModel.fromJson(json.decode(str));
@@ -8,9 +12,9 @@ class ProfileModel {
     String name;
     String email;
     String mobile;
+    String signature;
     Corporate corporate;
     bool isSignatureRequired;
-    String signature;
     List<Branch> branch;
     List<Branch> department;
 
@@ -18,9 +22,9 @@ class ProfileModel {
         required this.name,
         required this.email,
         required this.mobile,
+        required this.signature,
         required this.corporate,
         required this.isSignatureRequired,
-        required this.signature,
         required this.branch,
         required this.department,
     });
@@ -29,9 +33,9 @@ class ProfileModel {
         name: json["name"],
         email: json["email"],
         mobile: json["mobile"],
+        signature: json["signature"],
         corporate: Corporate.fromJson(json["corporate"]),
         isSignatureRequired: json["isSignatureRequired"],
-        signature: json["signature"],
         branch: List<Branch>.from(json["branch"].map((x) => Branch.fromJson(x))),
         department: List<Branch>.from(json["department"].map((x) => Branch.fromJson(x))),
     );
@@ -40,9 +44,9 @@ class ProfileModel {
         "name": name,
         "email": email,
         "mobile": mobile,
+        "signature": signature,
         "corporate": corporate.toJson(),
         "isSignatureRequired": isSignatureRequired,
-        "signature": signature,
         "branch": List<dynamic>.from(branch.map((x) => x.toJson())),
         "department": List<dynamic>.from(department.map((x) => x.toJson())),
     };
@@ -73,7 +77,8 @@ class Corporate {
     String corporateName;
     String image;
     String empcode;
-    String name;
+    String officialname;
+    String officialemail;
     String reportingManager;
     String reportingManagerMobile;
     String reportingManagerEmail;
@@ -86,7 +91,8 @@ class Corporate {
         required this.corporateName,
         required this.image,
         required this.empcode,
-        required this.name,
+        required this.officialname,
+        required this.officialemail,
         required this.reportingManager,
         required this.reportingManagerMobile,
         required this.reportingManagerEmail,
@@ -100,7 +106,8 @@ class Corporate {
         corporateName: json["corporateName"],
         image: json["image"],
         empcode: json["empcode"],
-        name: json["name"],
+        officialname: json["officialname"],
+        officialemail: json["officialemail"],
         reportingManager: json["reportingManager"],
         reportingManagerMobile: json["reportingManagerMobile"],
         reportingManagerEmail: json["reportingManagerEmail"],
@@ -114,7 +121,8 @@ class Corporate {
         "corporateName": corporateName,
         "image": image,
         "empcode": empcode,
-        "name": name,
+        "officialname": officialname,
+        "officialemail": officialemail,
         "reportingManager": reportingManager,
         "reportingManagerMobile": reportingManagerMobile,
         "reportingManagerEmail": reportingManagerEmail,

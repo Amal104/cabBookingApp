@@ -18,6 +18,8 @@ class ProfileProvider extends ChangeNotifier {
   ProfileModel? profile;
   TextEditingController nameControler = TextEditingController();
   TextEditingController emailControler = TextEditingController();
+  TextEditingController coNameControler = TextEditingController();
+  TextEditingController coEmailControler = TextEditingController();
   TextEditingController updateOtpControler = TextEditingController();
   TextEditingController profilePhonecontroller = TextEditingController();
   bool haveOTP = false;
@@ -36,13 +38,9 @@ class ProfileProvider extends ChangeNotifier {
   Uint8List? signature;
 
   var dropDownListSelectBranchValue;
+  var dropDownListSelectBranchID;
   var dropDownListSelectDeptValue;
-
-  onchangedBranch(String? value) {
-    dropDownListSelectBranchValue = value!;
-    print(dropDownListSelectBranchValue);
-    notifyListeners();
-  }
+  var dropDownListSelectDeptID;
 
   isFourOtp() {
     if (updateOtpControler.text.length == 4) {
@@ -54,10 +52,34 @@ class ProfileProvider extends ChangeNotifier {
     }
   }
 
-  onchangedDept(String? value) {
-    dropDownListSelectDeptValue = value!;
+  onchangedBranch(String? data) {
+    var value = profile!.branch.firstWhere((value) => value.name == data);
+    dropDownListSelectBranchID = value.id;
+    print("ID : ${value.id} NAME : ${value.name}");
+    dropDownListSelectBranchValue = data!;
+    print(dropDownListSelectBranchValue);
+    notifyListeners();
+  }
+
+  onchangedDept(String? data) {
+    var value = profile!.department.firstWhere((value) => value.name == data);
+    dropDownListSelectDeptID = value.id;
+    print("ID : ${value.id} NAME : ${value.name}");
+    dropDownListSelectDeptValue = data;
     print(dropDownListSelectDeptValue);
     notifyListeners();
+  }
+
+  selectedBranch(int id) {
+    var value = profile!.branch.firstWhere((book) => book.id == id);
+    print(value.name);
+    return dropDownListSelectBranchValue = value.name;
+  }
+
+  selectedDept(int id) {
+    var value = profile!.department.firstWhere((book) => book.id == id);
+    print(value.name);
+    return dropDownListSelectDeptValue = value.name;
   }
 
   Future exportSignature() async {
@@ -82,7 +104,7 @@ class ProfileProvider extends ChangeNotifier {
         print(ApiLinks.baseURL + ApiLinks.profileData);
       }
       final response = await _dio.patch(
-        "http://192.168.29.9:2021/login/android/user/v2/profile/signature/update",
+        "http://10.114.20.87:2021/login/android/user/v2/profile/signature/update",
         data: FormData.fromMap({
           "signature": MultipartFile.fromBytes(
             signature!,
@@ -127,7 +149,7 @@ class ProfileProvider extends ChangeNotifier {
         print(ApiLinks.baseURL + ApiLinks.profileData);
       }
       final response = await _dio.get(
-        "http://192.168.29.9:2021/login/android/user/v2/profile",
+        "http://10.114.20.87:2021/login/android/user/v2/profile",
         options: Options(
           headers: {
             'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A',
@@ -217,6 +239,104 @@ class ProfileProvider extends ChangeNotifier {
           profileUpdateMobile.clear();
           updateOtpControler.clear();
         }
+        if (e.response?.statusCode != 200 && e.response?.data != null) {
+          CustomFlushBar.customFlushBar(
+              context, "Update", e.response!.data.toString());
+        }
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> updateCoProfile(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+    try {
+      if (kDebugMode) {
+        "http://10.114.20.87:2021/login/android/user/v2/profile/update/corporate/details";
+      }
+      Map data = {};
+      if (employeeIdControler.text != "") {
+        data["empcode"] = employeeIdControler.text;
+      } else {
+        data["empcode"] = profile!.corporate.empcode;
+      }
+      if (coNameControler.text != "") {
+        data["name"] = coNameControler.text;
+      } else {
+        data["name"] = profile!.corporate.officialname;
+      }
+      if (coEmailControler.text != "") {
+        data["email"] = coEmailControler.text;
+      } else {
+        data["email"] = profile!.corporate.officialemail;
+      }
+      if (designationControler.text != "") {
+        data["designation"] = designationControler.text;
+      } else {
+        data["designation"] = profile!.corporate.designation;
+      }
+      if (dropDownListSelectBranchID != null) {
+        data["branch"] = dropDownListSelectBranchID;
+      } else {
+        data["branch"] = profile?.corporate.branch;
+      }
+      if (dropDownListSelectDeptID != null) {
+        data["department"] = dropDownListSelectDeptID;
+      } else {
+        data["department"] = profile?.corporate.department;
+      }
+      if (managerNameControler.text != "") {
+        data["reportingmanager"] = managerNameControler.text;
+      } else {
+        data["reportingmanager"] = profile!.corporate.reportingManager;
+      }
+      if (managerMobileControler.text != "") {
+        data["reportingmanagermobile"] = managerMobileControler.text;
+      } else {
+        data["reportingmanagermobile"] =
+            profile!.corporate.reportingManagerMobile;
+      }
+      if (managerEmailControler.text != "") {
+        data["reportingmanageremail"] = managerEmailControler.text;
+      } else {
+        data["reportingmanageremail"] =
+            profile!.corporate.reportingManagerEmail;
+      }
+      if (kDebugMode) {
+        print(data);
+      }
+      final response = await _dio.patch(
+        "http://10.114.20.87:2021/login/android/user/v2/profile/update/corporate/details",
+        data: data,
+        options: Options(
+          headers: {'key': ApiLinks.key, 'token': token},
+        ),
+      );
+      if (response.statusCode == 200) {
+        if (kDebugMode) {
+          print(response);
+        }
+        Future.delayed(const Duration(seconds: 1));
+        CustomFlushBar.customFlushBar(context, "Update", response.toString());
+        getProfileData(context);
+        employeeIdControler.clear();
+        coNameControler.clear();
+        coEmailControler.clear();
+        designationControler.clear();
+        managerNameControler.clear();
+        managerMobileControler.clear();
+        managerEmailControler.clear();
+      }
+    } catch (e) {
+      if (e is DioException) {
+        employeeIdControler.clear();
+        coNameControler.clear();
+        coEmailControler.clear();
+        designationControler.clear();
+        managerNameControler.clear();
+        managerMobileControler.clear();
+        managerEmailControler.clear();
         if (e.response?.statusCode != 200 && e.response?.data != null) {
           CustomFlushBar.customFlushBar(
               context, "Update", e.response!.data.toString());
