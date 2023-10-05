@@ -10,6 +10,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:taskiuser/Components/Buttons.dart';
 import 'package:taskiuser/Components/TextField.dart';
 import 'package:taskiuser/Provider/Profile_Provider.dart';
+import 'package:taskiuser/Widgets/CoProfile_Screen_Shimmer.dart';
 
 import '../Components/AppBar.dart';
 import '../values/values.dart';
@@ -218,22 +219,7 @@ class _CoProfileUpdateState extends State<CoProfileUpdate> {
                       ),
                     ],
                   )
-                : Shimmer.fromColors(
-                    baseColor: AppColor.grey800,
-                    highlightColor: AppColor.grey,
-                    child: SizedBox(
-                      height: height(context),
-                      child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) => Container(
-                                margin: EdgeInsets.symmetric(vertical: 20),
-                                width: width(context),
-                                height: height(context) * 0.05,
-                                decoration: BoxDecoration(
-                                    color: AppColor.secondaryShadev2,
-                                    borderRadius: BorderRadius.circular(8)),
-                              )),
-                    ));
+                : const CoProfileScreenShimmer();
           }),
         ),
       ),

@@ -33,7 +33,17 @@ class SignatureScreen extends StatelessWidget {
         builder: (context, provider, child) => Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.network(signature),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  height: height(context) * 0.5,
+                  width: width(context),
+                  color: AppColor.white,
+                ),
+                Image.network(signature),
+              ],
+            ),
             SizedBox(
               height: height(context) * 0.05,
             ),

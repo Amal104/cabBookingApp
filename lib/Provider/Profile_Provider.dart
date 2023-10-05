@@ -55,30 +55,32 @@ class ProfileProvider extends ChangeNotifier {
   onchangedBranch(String? data) {
     var value = profile!.branch.firstWhere((value) => value.name == data);
     dropDownListSelectBranchID = value.id;
-    print("ID : ${value.id} NAME : ${value.name}");
     dropDownListSelectBranchValue = data!;
-    print(dropDownListSelectBranchValue);
     notifyListeners();
+    if (kDebugMode) {
+      print("ID : ${value.id} NAME : ${value.name}");
+      print(dropDownListSelectBranchValue);
+    }
   }
 
   onchangedDept(String? data) {
     var value = profile!.department.firstWhere((value) => value.name == data);
     dropDownListSelectDeptID = value.id;
-    print("ID : ${value.id} NAME : ${value.name}");
     dropDownListSelectDeptValue = data;
-    print(dropDownListSelectDeptValue);
     notifyListeners();
+    if (kDebugMode) {
+      print("ID : ${value.id} NAME : ${value.name}");
+      print(dropDownListSelectDeptValue);
+    }
   }
 
   selectedBranch(int id) {
     var value = profile!.branch.firstWhere((book) => book.id == id);
-    print(value.name);
     return dropDownListSelectBranchValue = value.name;
   }
 
   selectedDept(int id) {
     var value = profile!.department.firstWhere((book) => book.id == id);
-    print(value.name);
     return dropDownListSelectDeptValue = value.name;
   }
 
