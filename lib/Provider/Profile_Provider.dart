@@ -106,7 +106,7 @@ class ProfileProvider extends ChangeNotifier {
         print(ApiLinks.baseURL + ApiLinks.profileData);
       }
       final response = await _dio.patch(
-        "http://10.114.20.87:2021/login/android/user/v2/profile/signature/update",
+        "http://10.114.20.157:2021/login/android/user/v2/profile/signature/update",
         data: FormData.fromMap({
           "signature": MultipartFile.fromBytes(
             signature!,
@@ -151,7 +151,7 @@ class ProfileProvider extends ChangeNotifier {
         print(ApiLinks.baseURL + ApiLinks.profileData);
       }
       final response = await _dio.get(
-        "http://10.114.20.87:2021/login/android/user/v2/profile",
+        "http://10.114.20.157:2021/login/android/user/v2/profile",
         options: Options(
           headers: {
             'key': 'bk6GGaMsg0mFtk%2F1irhP30pHYbo%3D%0A',
@@ -255,7 +255,7 @@ class ProfileProvider extends ChangeNotifier {
     final token = prefs.getString("token");
     try {
       if (kDebugMode) {
-        "http://10.114.20.87:2021/login/android/user/v2/profile/update/corporate/details";
+        "http://10.114.20.157:2021/login/android/user/v2/profile/update/corporate/details";
       }
       Map data = {};
       if (employeeIdControler.text != "") {
@@ -309,7 +309,7 @@ class ProfileProvider extends ChangeNotifier {
         print(data);
       }
       final response = await _dio.patch(
-        "http://10.114.20.87:2021/login/android/user/v2/profile/update/corporate/details",
+        "http://10.114.20.157:2021/login/android/user/v2/profile/update/corporate/details",
         data: data,
         options: Options(
           headers: {'key': ApiLinks.key, 'token': token},

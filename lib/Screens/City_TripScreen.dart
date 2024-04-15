@@ -18,6 +18,7 @@ class CityTripScreen extends StatelessWidget {
       child: Consumer<BookingProvider>(
         builder: (context, provider, child) {
           return Container(
+            height: height(context)*0.3,
             padding: EdgeInsets.symmetric(horizontal: width(context) * 0.025),
             color: AppColor.black,
             child: Column(
@@ -35,53 +36,53 @@ class CityTripScreen extends StatelessWidget {
                 SizedBox(
                   height: height(context) * 0.015,
                 ),
-                CityTripDateSelection(provider: provider),
-                if (provider.selectedCityTripIndex == 1)
-                  SizedBox(
-                    height: height(context) * 0.015,
-                  ),
-                if (provider.selectedCityTripIndex == 1)
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: height(context) * 0.0125,
-                      horizontal: width(context) * 0.03,
-                    ),
-                    height: height(context) * 0.055,
-                    width: width(context),
-                    decoration: BoxDecoration(
-                      color: AppColor.secondaryShade,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Image.asset(
-                            "assets/icons/rupee.png",
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(
-                            "Personal Cash",
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: AppColor.white,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                SizedBox(
-                  height: height(context) * 0.015,
-                ),
-                CityTripCabType(provider: provider),
-                SizedBox(
-                  height: height(context) * 0.015,
-                ),
+                // CityTripDateSelection(provider: provider),
+                // if (provider.selectedCityTripIndex == 1)
+                //   SizedBox(
+                //     height: height(context) * 0.015,
+                //   ),
+                // if (provider.selectedCityTripIndex == 1)
+                //   Container(
+                //     padding: EdgeInsets.symmetric(
+                //       vertical: height(context) * 0.0125,
+                //       horizontal: width(context) * 0.03,
+                //     ),
+                //     height: height(context) * 0.055,
+                //     width: width(context),
+                //     decoration: BoxDecoration(
+                //       color: AppColor.secondaryShade,
+                //       borderRadius: BorderRadius.circular(10),
+                //     ),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       children: [
+                //         Align(
+                //           alignment: Alignment.centerLeft,
+                //           child: Image.asset(
+                //             "assets/icons/rupee.png",
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.only(left: 10),
+                //           child: Text(
+                //             "Personal Cash",
+                //             style: GoogleFonts.inter(
+                //               fontWeight: FontWeight.w500,
+                //               fontSize: 14,
+                //               color: AppColor.white,
+                //             ),
+                //           ),
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // SizedBox(
+                //   height: height(context) * 0.015,
+                // ),
+                // CityTripCabType(provider: provider),
+                // SizedBox(
+                //   height: height(context) * 0.015,
+                // ),
                CityTripBookingButton(provider: provider),
                 SizedBox(
                   height: height(context) * 0.01,

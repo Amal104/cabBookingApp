@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taskiuser/Components/FlushBar.dart';
 import 'package:taskiuser/Components/Toast.dart';
 import 'package:taskiuser/Provider/Booking_Provider.dart';
 import 'package:taskiuser/Screens/Rating_Screen.dart';
+import 'package:taskiuser/Widgets/BottomSheet.dart';
 import '../values/values.dart';
 
 class CityTripBookingButton extends StatelessWidget {
@@ -20,10 +22,11 @@ class CityTripBookingButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
-        showSuccessToast(context, "Trip successfully booked!");
-        Future.delayed(const Duration(seconds: 3), () {
-          Get.to(() => const RatingScreen(), transition: Transition.zoom);
-        });
+        CustomFlushBar.customFlushBar(context, "😀", "Your trip booked successfully!");
+        // showSuccessToast(context, "Trip successfully booked!");
+        // Future.delayed(const Duration(seconds: 3), () {
+        //   Get.to(() => const RatingScreen(), transition: Transition.zoom);
+        // });
       },
       child: Container(
         width: width(context),

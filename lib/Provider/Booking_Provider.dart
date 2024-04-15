@@ -18,6 +18,7 @@ class BookingProvider extends ChangeNotifier {
   String rentalTemp = "";
 
   bool a = false;
+  bool whereToGo = false;
   String cityOneWayDate = "";
   String cityReturnDate = "";
   String outStationOneWayDate = "";
@@ -42,6 +43,11 @@ class BookingProvider extends ChangeNotifier {
   bool ratingCheckBoxValue2 = false;
   bool ratingCheckBoxValue3 = false;
   bool ratingCheckBoxValue4 = false;
+
+  void  whereToGoPage(){
+     whereToGo = true;
+     notifyListeners();
+  }
 
   void cityTripInputSwap() {
     cityTemp = cityTripFromController.text;
